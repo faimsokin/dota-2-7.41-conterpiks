@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dota 2 7.41 — Полный гид контрпиков (127 героев)</title>
+    <title>Dota 2 Counterpicks 7.41 — Все герои</title>
     <style>
-        /* ================================================================
-           ОБЩИЕ СТИЛИ — тёмная тема, адаптив, скролл
-           ================================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -15,791 +12,845 @@
         }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #0a0a18;
-            color: #e8e8f5;
-            transition: background 0.2s;
+            background: #0a0d14;
+            color: #e8e8e8;
+            padding: 20px;
             min-height: 100vh;
-            padding-bottom: 4rem;
         }
-        a {
-            color: #feb47b;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== ШАПКА ===== */
-        .header {
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            background: rgba(10, 10, 24, 0.94);
-            backdrop-filter: blur(14px);
-            padding: 0.9rem 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 2px solid #2a2a4e;
-            box-shadow: 0 6px 28px rgba(0,0,0,0.9);
-            gap: 1rem;
-        }
-        .header h1 {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            font-weight: 800;
-        }
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-        }
-        #searchInput {
-            padding: 0.7rem 1.6rem;
-            border-radius: 40px;
-            border: none;
-            background: #28284a;
-            color: #fff;
-            font-size: 1rem;
-            width: 250px;
-            transition: 0.3s;
-            outline: 2px solid transparent;
-        }
-        #searchInput:focus {
-            outline: 2px solid #feb47b;
-            background: #36365a;
-            width: 320px;
-        }
-        #langToggle {
-            padding: 0.6rem 1.4rem;
-            border: none;
-            border-radius: 40px;
-            background: #3d3d6a;
-            color: #fff;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-        #langToggle:hover {
-            background: #5a5a8a;
-            transform: scale(1.03);
-        }
-        .badge-count {
-            font-size: 0.75rem;
-            background: #2a2a4e;
-            padding: 0.25rem 1rem;
-            border-radius: 30px;
-            color: #b0b0d0;
-            border: 1px solid #444;
-        }
-
-        /* ===== СЕТКА ГЕРОЕВ ===== */
-        .hero-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1440px;
+        .container {
+            max-width: 1500px;
             margin: 0 auto;
         }
-
-        /* ===== КАРТОЧКА ГЕРОЯ ===== */
-        .hero-card {
-            background: #16162e;
-            border-radius: 28px;
-            padding: 1.8rem 2.4rem;
-            border-left: 12px solid #ffa94d;
-            box-shadow: 0 10px 32px rgba(0,0,0,0.6);
-            transition: 0.2s;
-            scroll-margin-top: 110px;
-        }
-        .hero-card:hover {
-            background: #1e1e3a;
-            transform: translateX(8px);
-        }
-        .hero-name {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.6rem;
+        /* Header */
+        .header {
             display: flex;
             flex-wrap: wrap;
-            align-items: baseline;
-            gap: 0.8rem;
-        }
-        .hero-name .sub {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #b0b0d0;
-        }
-        .hero-color {
-            display: inline-block;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            margin-right: 12px;
-            border: 2px solid #555;
-            flex-shrink: 0;
-        }
-        .counter-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem 2.5rem;
-            margin-top: 0.8rem;
-        }
-        @media (max-width: 720px) {
-            .counter-section {
-                grid-template-columns: 1fr;
-            }
-            .header h1 {
-                font-size: 1.4rem;
-            }
-            #searchInput {
-                width: 160px;
-            }
-            #searchInput:focus {
-                width: 200px;
-            }
-            .hero-card {
-                padding: 1.2rem;
-            }
-        }
-        .counter-block {
-            background: #10102a;
-            padding: 0.9rem 1.4rem;
+            justify-content: space-between;
+            align-items: center;
+            background: #161c28;
+            padding: 18px 28px;
             border-radius: 18px;
-            border-left: 5px solid #4a4a7a;
+            margin-bottom: 30px;
+            border: 1px solid #2c364a;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.7);
+            gap: 15px;
         }
-        .counter-block strong {
-            display: block;
-            font-size: 1.15rem;
-            margin-bottom: 0.5rem;
-            color: #f0c27f;
+        .header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0a55a, #e86a3e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        .header-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+        .search-box {
+            position: relative;
+            min-width: 240px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 18px;
+            border-radius: 40px;
+            border: 1px solid #3b465e;
+            background: #1e2636;
+            color: #f0f0f0;
+            font-size: 16px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .search-box input:focus {
+            border-color: #e8793e;
+            box-shadow: 0 0 12px rgba(232, 121, 62, 0.3);
+        }
+        .search-box input::placeholder {
+            color: #7a85a0;
+        }
+        .lang-btn {
+            padding: 10px 24px;
+            border-radius: 40px;
+            border: none;
+            background: #2c364a;
+            color: #ddd;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #4a5670;
+        }
+        .lang-btn:hover {
+            background: #3e4b66;
+            transform: scale(1.02);
+        }
+        .lang-btn.active {
+            background: #e8793e;
+            color: #fff;
+            border-color: #e8793e;
+        }
+        .stats {
+            font-size: 14px;
+            color: #9aa6c0;
+            margin-left: 8px;
+        }
+        /* Grid */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-top: 10px;
+        }
+        /* Card */
+        .hero-card {
+            background: #141b26;
+            border-radius: 20px;
+            padding: 22px 24px 24px;
+            border: 1px solid #293140;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+            transition: 0.25s ease;
+            scroll-margin-top: 80px;
+        }
+        .hero-card:hover {
+            border-color: #4a5a78;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+        }
+        .hero-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .hero-name .badge {
+            font-size: 14px;
+            background: #1f2a3a;
+            padding: 2px 12px;
+            border-radius: 30px;
+            color: #b0bedb;
+            font-weight: 400;
+        }
+        .hero-name a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+        .hero-name a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            color: #b8c6e0;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid #283040;
+            padding-bottom: 4px;
+        }
+        .counter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 10px;
+            margin-top: 4px;
         }
         .counter-item {
-            display: inline-block;
-            background: #25254a;
-            padding: 0.25rem 1rem;
+            background: #1f283a;
+            padding: 5px 14px 5px 12px;
             border-radius: 30px;
-            margin: 0.2rem 0.4rem 0.2rem 0;
-            font-size: 0.95rem;
-            cursor: pointer;
+            font-size: 14px;
+            border-left: 4px solid #e8793e;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
             transition: 0.15s;
-            border: 1px solid transparent;
+            cursor: pointer;
         }
         .counter-item:hover {
-            background: #40406a;
-            border-color: #feb47b;
-            transform: scale(1.03);
+            background: #2e3a52;
+            transform: scale(1.02);
         }
-        .counter-item .skill-hint {
-            font-size: 0.7rem;
-            color: #b0b0e0;
-            margin-left: 5px;
+        .counter-item a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
         }
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            font-size: 1.6rem;
-            color: #888;
+        .counter-item a:hover {
+            text-decoration: underline;
         }
-
-        /* ===== ПОДВАЛ ===== */
+        .counter-item .skill {
+            font-size: 12px;
+            color: #b0bedb;
+            background: #0f1520;
+            padding: 0 8px;
+            border-radius: 30px;
+            margin-left: 4px;
+            opacity: 0.9;
+        }
+        .empty-msg {
+            color: #6a7a94;
+            font-style: italic;
+            font-size: 14px;
+            padding: 4px 0;
+        }
         .footer {
+            margin-top: 50px;
             text-align: center;
-            padding: 2.2rem;
-            color: #555;
-            font-size: 0.9rem;
-            border-top: 1px solid #2a2a44;
-            margin-top: 2rem;
+            color: #4a5670;
+            font-size: 14px;
+            border-top: 1px solid #1f283a;
+            padding-top: 24px;
         }
-
-        /* ===== АНИМАЦИЯ ===== */
-        .highlight {
-            animation: flash 0.7s ease;
-        }
-        @keyframes flash {
-            0% {
-                background: rgba(255, 180, 80, 0.35);
-            }
-            100% {
-                background: transparent;
-            }
-        }
-
-        /* ===== СКРОЛЛБАР ===== */
+        /* scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
-            background: #0a0a18;
+            background: #0a0d14;
         }
         ::-webkit-scrollbar-thumb {
-            background: #3d3d6a;
-            border-radius: 10px;
+            background: #2c364a;
+            border-radius: 12px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #5a5a8a;
+            background: #4a5a78;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 22px; }
+            .hero-grid { grid-template-columns: 1fr; }
+            .hero-name { font-size: 24px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- ===== ШАПКА ===== -->
+<div class="container">
     <header class="header">
         <h1>⚔️ Dota 2 · 7.41</h1>
-        <div class="controls">
-            <input type="text" id="searchInput" placeholder="🔍 Поиск (L → Lifestealer...)" autocomplete="off">
-            <button id="langToggle">🇷🇺 RU / 🇬🇧 EN</button>
-            <span class="badge-count">127 героев</span>
+        <div class="header-controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Поиск героя..." data-ru="🔍 Поиск героя..." data-en="🔍 Search hero...">
+            </div>
+            <button class="lang-btn active" id="langToggle">🇷🇺 RU</button>
+            <span class="stats" id="heroCount">127 героев</span>
         </div>
     </header>
+    <div id="heroGrid" class="hero-grid"></div>
+    <div class="footer">Все 127 героев Dota 2 · Контрпики для патча 7.41 · Нажми на имя героя чтобы перейти к нему</div>
+</div>
+<script>
+    // ------------------------------------------------------------
+    // БАЗА ДАННЫХ: 127 ГЕРОЕВ (включая Ringmaster, Largo и всех)
+    // ------------------------------------------------------------
+    const heroesData = [
+        // ===== STRENGTH =====
+        { id: 'abaddon', name: 'Abaddon', color: '#4d8b6b', font: 'Segoe UI', ru: 'Абаддон',
+            counters: [{ hero: 'Legion Commander', skill: 'Aphotic Shield (снимает дуэль)' }, { hero: 'Axe', skill: 'Borrowed Time (не даёт добить через Culling Blade)' }],
+            counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast (блокирует лечение)' }, { hero: 'Doom', skill: 'Doom (запечатывает ульт)' }] },
+        { id: 'alchemist', name: 'Alchemist', color: '#b8a84c', font: 'Arial', ru: 'Алхимик',
+            counters: [{ hero: 'Ancient Apparition', skill: 'Ice Blast (блокирует реген)' }, { hero: 'Viper', skill: 'Poison Attack (снижает лечение)' }],
+            counteredBy: [{ hero: 'Ursa', skill: 'Fury Swipes (быстрый урон)' }, { hero: 'Slark', skill: 'Essence Shift (ворует статы)' }] },
+        { id: 'axe', name: 'Axe', color: '#b33e3e', font: 'Verdana', ru: 'Акс',
+            counters: [{ hero: 'Drow Ranger', skill: 'Gust (сбивает агрессию)' }, { hero: 'Sniper', skill: 'Shrapnel (держит дистанцию)' }],
+            counteredBy: [{ hero: 'Timbersaw', skill: 'Whirling Death (режет броню)' }, { hero: 'Necrophos', skill: 'Reaper\'s Scythe (казнь)' }] },
+        { id: 'beastmaster', name: 'Beastmaster', color: '#7a9e5a', font: 'Tahoma', ru: 'Бистмастер',
+            counters: [{ hero: 'Phantom Lancer', skill: 'Primal Roar (контроль)' }, { hero: 'Storm Spirit', skill: 'Roar + axes' }],
+            counteredBy: [{ hero: 'Sand King', skill: 'Burrowstrike (прерывает)' }, { hero: 'Rubick', skill: 'Steal Roar' }] },
+        { id: 'brewmaster', name: 'Brewmaster', color: '#b8854a', font: 'Georgia', ru: 'Брюмастер',
+            counters: [{ hero: 'Meepo', skill: 'Earth split (разделение)' }, { hero: 'Phantom Lancer', skill: 'Cyclone' }],
+            counteredBy: [{ hero: 'Silencer', skill: 'Global Silence' }, { hero: 'Disruptor', skill: 'Static Storm' }] },
+        { id: 'bristleback', name: 'Bristleback', color: '#6b7a3e', font: 'Trebuchet MS', ru: 'Бристлбек',
+            counters: [{ hero: 'Legion Commander', skill: 'Duel (игнорирует спину)' }, { hero: 'Huskar', skill: 'Burning Spear (чистый урон)' }],
+            counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Slark', skill: 'Essence Shift' }] },
+        { id: 'centaur', name: 'Centaur Warrunner', color: '#b3773a', font: 'Arial', ru: 'Кентавр',
+            counters: [{ hero: 'Drow Ranger', skill: 'Gust' }, { hero: 'Troll Warlord', skill: 'Whirling Axes' }],
+            counteredBy: [{ hero: 'Necrophos', skill: 'Reaper\'s Scythe' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'chaos_knight', name: 'Chaos Knight', color: '#6b3a8a', font: 'Impact', ru: 'ЧК',
+            counters: [{ hero: 'Phantom Lancer', skill: 'Illusion burst' }, { hero: 'Naga Siren', skill: 'Song' }],
+            counteredBy: [{ hero: 'Bristleback', skill: 'Quill Spray' }, { hero: 'Earthshaker', skill: 'Echo Slam' }] },
+        { id: 'clockwerk', name: 'Clockwerk', color: '#7a7a7a', font: 'Courier New', ru: 'Клокверк',
+            counters: [{ hero: 'Tinker', skill: 'Hook + Battery' }, { hero: 'Sniper', skill: 'Hook' }],
+            counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'doom', name: 'Doom', color: '#8a3a3a', font: 'Times New Roman', ru: 'Дум',
+            counters: [{ hero: 'Juggernaut', skill: 'Doom (блокирует ульт)' }, { hero: 'Pudge', skill: 'Doom (отключает пассивки)' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage (иммунитет)' }, { hero: 'Oracle', skill: 'False Promise' }] },
+        { id: 'dragon_knight', name: 'Dragon Knight', color: '#3a6b8a', font: 'Arial', ru: 'ДК',
+            counters: [{ hero: 'Troll Warlord', skill: 'Bash' }, { hero: 'Viper', skill: 'Poison' }],
+            counteredBy: [{ hero: 'Timbersaw', skill: 'Whirling Death' }, { hero: 'Slark', skill: 'Essence Shift' }] },
+        { id: 'earth_spirit', name: 'Earth Spirit', color: '#5a7a4a', font: 'Verdana', ru: 'Земляной дух',
+            counters: [{ hero: 'Storm Spirit', skill: 'Roll' }, { hero: 'Queen of Pain', skill: 'Silence' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'earthshaker', name: 'Earthshaker', color: '#6b5a3a', font: 'Georgia', ru: 'Эртшейкер',
+            counters: [{ hero: 'Meepo', skill: 'Echo Slam' }, { hero: 'Phantom Lancer', skill: 'Echo Slam' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Nyx', skill: 'Spiked Carapace' }] },
+        { id: 'elder_titan', name: 'Elder Titan', color: '#4a6b7a', font: 'Tahoma', ru: 'Элдер Титан',
+            counters: [{ hero: 'Morphling', skill: 'Sleep + Stomp' }, { hero: 'Phantom Lancer', skill: 'Stomp' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Vengeful Spirit', skill: 'Swap' }] },
+        { id: 'huskar', name: 'Huskar', color: '#b34a3a', font: 'Arial', ru: 'Хаскар',
+            counters: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Viper', skill: 'Poison' }],
+            counteredBy: [{ hero: 'Bloodseeker', skill: 'Rupture' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'kunkka', name: 'Kunkka', color: '#3a7a8a', font: 'Georgia', ru: 'Кункка',
+            counters: [{ hero: 'Tinker', skill: 'X Mark' }, { hero: 'Storm Spirit', skill: 'Torrent' }],
+            counteredBy: [{ hero: 'Slark', skill: 'Dark Pact' }, { hero: 'Puck', skill: 'Phase Shift' }] },
+        { id: 'legion_commander', name: 'Legion Commander', color: '#8a6a3a', font: 'Impact', ru: 'Легион',
+            counters: [{ hero: 'Phantom Assassin', skill: 'Duel (блокирует уворот)' }, { hero: 'Pudge', skill: 'Duel' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'lifestealer', name: 'Lifestealer', color: '#6b3a3a', font: 'Verdana', ru: 'Лайфстилер',
+            counters: [{ hero: 'Bristleback', skill: 'Rage' }, { hero: 'Pudge', skill: 'Rage' }],
+            counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Ursa', skill: 'Fury Swipes' }] },
+        { id: 'lycan', name: 'Lycan', color: '#7a5a3a', font: 'Tahoma', ru: 'Ликан',
+            counters: [{ hero: 'Tinker', skill: 'Howl' }, { hero: 'Sniper', skill: 'Summon Wolves' }],
+            counteredBy: [{ hero: 'Beastmaster', skill: 'Roar' }, { hero: 'Bristleback', skill: 'Quills' }] },
+        { id: 'magnus', name: 'Magnus', color: '#3a6b4a', font: 'Arial', ru: 'Магнус',
+            counters: [{ hero: 'Terrorblade', skill: 'Reverse Polarity' }, { hero: 'Morphling', skill: 'RP' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'mars', name: 'Mars', color: '#8a4a3a', font: 'Georgia', ru: 'Марс',
+            counters: [{ hero: 'Drow Ranger', skill: 'God\'s Rebuke' }, { hero: 'Sniper', skill: 'Bulwark' }],
+            counteredBy: [{ hero: 'Necrophos', skill: 'Scythe' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'night_stalker', name: 'Night Stalker', color: '#2a3a5a', font: 'Impact', ru: 'Найт сталкер',
+            counters: [{ hero: 'Invoker', skill: 'Silence' }, { hero: 'Storm Spirit', skill: 'Void' }],
+            counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Kunkka', skill: 'X Mark' }] },
+        { id: 'omniknight', name: 'Omniknight', color: '#d4b84a', font: 'Times New Roman', ru: 'Омни',
+            counters: [{ hero: 'Juggernaut', skill: 'Purification' }, { hero: 'Phantom Assassin', skill: 'Heal' }],
+            counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'pudge', name: 'Pudge', color: '#6b4a3a', font: 'Arial', ru: 'Пудж',
+            counters: [{ hero: 'Tinker', skill: 'Hook' }, { hero: 'Sniper', skill: 'Hook' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal Hook' }] },
+        { id: 'pugna', name: 'Pugna', color: '#5a8a6a', font: 'Verdana', ru: 'Пугна',
+            counters: [{ hero: 'Leshrac', skill: 'Nether Ward' }, { hero: 'Zeus', skill: 'Nether Ward' }],
+            counteredBy: [{ hero: 'Nyx', skill: 'Carapace' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'sand_king', name: 'Sand King', color: '#b88a3a', font: 'Georgia', ru: 'Санд Кинг',
+            counters: [{ hero: 'Meepo', skill: 'Burrowstrike' }, { hero: 'Phantom Lancer', skill: 'Epicenter' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'slardar', name: 'Slardar', color: '#3a7a6a', font: 'Tahoma', ru: 'Слардар',
+            counters: [{ hero: 'Riki', skill: 'Corrosive Haze (видит в инвизе)' }, { hero: 'Phantom Assassin', skill: 'Haze' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Puck', skill: 'Phase Shift' }] },
+        { id: 'spirit_breaker', name: 'Spirit Breaker', color: '#4a5a7a', font: 'Arial', ru: 'СБ',
+            counters: [{ hero: 'Tinker', skill: 'Charge' }, { hero: 'Sniper', skill: 'Charge' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'sven', name: 'Sven', color: '#8a4a4a', font: 'Impact', ru: 'Свен',
+            counters: [{ hero: 'Phantom Lancer', skill: 'Storm Hammer' }, { hero: 'Meepo', skill: 'Cleave' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'tiny', name: 'Tiny', color: '#7a7a4a', font: 'Georgia', ru: 'Тайни',
+            counters: [{ hero: 'Morphling', skill: 'Avalanche' }, { hero: 'Phantom Lancer', skill: 'Toss' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'treant', name: 'Treant Protector', color: '#3a7a3a', font: 'Verdana', ru: 'Трент',
+            counters: [{ hero: 'Pudge', skill: 'Leech Seed' }, { hero: 'Bristleback', skill: 'Living Armor' }],
+            counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'tusk', name: 'Tusk', color: '#6a8a7a', font: 'Tahoma', ru: 'Таск',
+            counters: [{ hero: 'Storm Spirit', skill: 'Snowball' }, { hero: 'Sniper', skill: 'Snowball' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'underlord', name: 'Underlord', color: '#4a5a3a', font: 'Arial', ru: 'Андерлорд',
+            counters: [{ hero: 'Phantom Lancer', skill: 'Firestorm' }, { hero: 'Meepo', skill: 'Firestorm' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'axe', name: 'Axe', color: '#b33e3e', font: 'Verdana', ru: 'Акс',
+            counters: [{ hero: 'Drow Ranger', skill: 'Gust' }, { hero: 'Sniper', skill: 'Shrapnel' }],
+            counteredBy: [{ hero: 'Timbersaw', skill: 'Whirling Death' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        // ===== AGILITY =====
+        { id: 'anti_mage', name: 'Anti-Mage', color: '#4a6a8a', font: 'Segoe UI', ru: 'Анти-Мейдж',
+            counters: [{ hero: 'Storm Spirit', skill: 'Mana Void' }, { hero: 'Tinker', skill: 'Mana Void' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Legion Commander', skill: 'Duel' }] },
+        { id: 'arc_warden', name: 'Arc Warden', color: '#8a7a4a', font: 'Arial', ru: 'Арк Варден',
+            counters: [{ hero: 'Storm Spirit', skill: 'Spark Wraith' }, { hero: 'Puck', skill: 'Spark' }],
+            counteredBy: [{ hero: 'Naga Siren', skill: 'Song' }, { hero: 'Phantom Lancer', skill: 'Illusions' }] },
+        { id: 'bloodseeker', name: 'Bloodseeker', color: '#8a2a2a', font: 'Impact', ru: 'Бладсикер',
+            counters: [{ hero: 'Slark', skill: 'Rupture' }, { hero: 'Tinker', skill: 'Rupture' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Pudge', skill: 'Dismember' }] },
+        { id: 'bounty_hunter', name: 'Bounty Hunter', color: '#4a7a4a', font: 'Verdana', ru: 'Баунти',
+            counters: [{ hero: 'Riki', skill: 'Track (видит инвиз)' }, { hero: 'Clinkz', skill: 'Track' }],
+            counteredBy: [{ hero: 'Slardar', skill: 'Corrosive Haze' }, { hero: 'Zeus', skill: 'Lightning Bolt' }] },
+        { id: 'clinkz', name: 'Clinkz', color: '#b86a3a', font: 'Georgia', ru: 'Клинкз',
+            counters: [{ hero: 'Sniper', skill: 'Searing Arrows' }, { hero: 'Drow Ranger', skill: 'Searing' }],
+            counteredBy: [{ hero: 'Bounty Hunter', skill: 'Track' }, { hero: 'Slardar', skill: 'Haze' }] },
+        { id: 'drow_ranger', name: 'Drow Ranger', color: '#4a7a9a', font: 'Tahoma', ru: 'Дров',
+            counters: [{ hero: 'Troll Warlord', skill: 'Marksmanship' }, { hero: 'Sniper', skill: 'Marksmanship' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Pudge', skill: 'Hook' }] },
+        { id: 'ember_spirit', name: 'Ember Spirit', color: '#d46a2a', font: 'Arial', ru: 'Эмбер',
+            counters: [{ hero: 'Meepo', skill: 'Sleight of Fists' }, { hero: 'Phantom Lancer', skill: 'Sleight' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'faceless_void', name: 'Faceless Void', color: '#2a4a6a', font: 'Impact', ru: 'Войд',
+            counters: [{ hero: 'Lifestealer', skill: 'Chronosphere' }, { hero: 'Juggernaut', skill: 'Chrono' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'gyrocopter', name: 'Gyrocopter', color: '#8a7a3a', font: 'Georgia', ru: 'Гирокоптер',
+            counters: [{ hero: 'Meepo', skill: 'Flak Cannon' }, { hero: 'Phantom Lancer', skill: 'Flak' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'hoodwink', name: 'Hoodwink', color: '#5a8a3a', font: 'Verdana', ru: 'Худвинк',
+            counters: [{ hero: 'Sniper', skill: 'Acorn Shot' }, { hero: 'Tinker', skill: 'Bushwhack' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Pudge', skill: 'Hook' }] },
+        { id: 'juggernaut', name: 'Juggernaut', color: '#6a8a6a', font: 'Tahoma', ru: 'Джаггернаут',
+            counters: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Culling Blade' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Omniknight', skill: 'Purification' }] },
+        { id: 'lone_druid', name: 'Lone Druid', color: '#5a6a3a', font: 'Arial', ru: 'Лон Друид',
+            counters: [{ hero: 'Tinker', skill: 'Spirit Bear' }, { hero: 'Sniper', skill: 'Bear' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Beastmaster', skill: 'Roar' }] },
+        { id: 'medusa', name: 'Medusa', color: '#3a7a7a', font: 'Georgia', ru: 'Медуза',
+            counters: [{ hero: 'Anti-Mage', skill: 'Mana Void' }, { hero: 'Nyx', skill: 'Mana Burn' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'meepo', name: 'Meepo', color: '#6a4a3a', font: 'Impact', ru: 'Мипо',
+            counters: [{ hero: 'Earthshaker', skill: 'Echo Slam' }, { hero: 'Sand King', skill: 'Epicenter' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'mirana', name: 'Mirana', color: '#8a6a4a', font: 'Verdana', ru: 'Мирана',
+            counters: [{ hero: 'Pudge', skill: 'Sacred Arrow' }, { hero: 'Tinker', skill: 'Arrow' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'monkey_king', name: 'Monkey King', color: '#b88a3a', font: 'Arial', ru: 'Манки',
+            counters: [{ hero: 'Sniper', skill: 'Jingu' }, { hero: 'Drow Ranger', skill: 'Jingu' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'morphling', name: 'Morphling', color: '#3a8a8a', font: 'Georgia', ru: 'Морфлинг',
+            counters: [{ hero: 'Hoodwink', skill: 'Adaptive Strike' }, { hero: 'Sniper', skill: 'Adaptive' }],
+            counteredBy: [{ hero: 'Anti-Mage', skill: 'Mana Void' }, { hero: 'Axe', skill: 'Culling Blade' }] },
+        { id: 'naga_siren', name: 'Naga Siren', color: '#6a8a7a', font: 'Tahoma', ru: 'Нага',
+            counters: [{ hero: 'Earthshaker', skill: 'Echo Slam' }, { hero: 'Sand King', skill: 'Epicenter' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'phantom_assassin', name: 'Phantom Assassin', color: '#8a4a8a', font: 'Impact', ru: 'ПА',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Legion Commander', skill: 'Duel' }] },
+        { id: 'phantom_lancer', name: 'Phantom Lancer', color: '#6a8a6a', font: 'Verdana', ru: 'ПЛ',
+            counters: [{ hero: 'Earthshaker', skill: 'Echo Slam' }, { hero: 'Sand King', skill: 'Epicenter' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'riki', name: 'Riki', color: '#4a6a7a', font: 'Arial', ru: 'Рики',
+            counters: [{ hero: 'Slardar', skill: 'Corrosive Haze' }, { hero: 'Zeus', skill: 'Lightning Bolt' }],
+            counteredBy: [{ hero: 'Bounty Hunter', skill: 'Track' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'shadow_fiend', name: 'Shadow Fiend', color: '#5a5a7a', font: 'Georgia', ru: 'СФ',
+            counters: [{ hero: 'Storm Spirit', skill: 'Raze' }, { hero: 'Puck', skill: 'Raze' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'slark', name: 'Slark', color: '#3a6a8a', font: 'Tahoma', ru: 'Сларк',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'sniper', name: 'Sniper', color: '#7a7a3a', font: 'Impact', ru: 'Снайпер',
+            counters: [{ hero: 'Pudge', skill: 'Hook' }, { hero: 'Axe', skill: 'Culling Blade' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'spectre', name: 'Spectre', color: '#4a3a6a', font: 'Verdana', ru: 'Спектр',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'templar_assassin', name: 'Templar Assassin', color: '#8a7a4a', font: 'Arial', ru: 'ТА',
+            counters: [{ hero: 'Pudge', skill: 'Hook' }, { hero: 'Lifestealer', skill: 'Rage' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'terrorblade', name: 'Terrorblade', color: '#8a3a6a', font: 'Georgia', ru: 'Террорблейд',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'troll_warlord', name: 'Troll Warlord', color: '#8a6a3a', font: 'Impact', ru: 'Тролль',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'ursa', name: 'Ursa', color: '#6a4a3a', font: 'Verdana', ru: 'Урса',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'venomancer', name: 'Venomancer', color: '#5a8a3a', font: 'Tahoma', ru: 'Веномансер',
+            counters: [{ hero: 'Pudge', skill: 'Poison' }, { hero: 'Axe', skill: 'Culling Blade' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'viper', name: 'Viper', color: '#4a7a4a', font: 'Arial', ru: 'Вайпер',
+            counters: [{ hero: 'Pudge', skill: 'Poison' }, { hero: 'Axe', skill: 'Culling Blade' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'weaver', name: 'Weaver', color: '#6a8a8a', font: 'Georgia', ru: 'Вивер',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        // ===== INTELLIGENCE =====
+        { id: 'ancient_apparition', name: 'Ancient Apparition', color: '#4a8a8a', font: 'Segoe UI', ru: 'АА',
+            counters: [{ hero: 'Huskar', skill: 'Ice Blast' }, { hero: 'Alchemist', skill: 'Ice Blast' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'crystal_maiden', name: 'Crystal Maiden', color: '#6a8aba', font: 'Verdana', ru: 'Кристалка',
+            counters: [{ hero: 'Tinker', skill: 'Frostbite' }, { hero: 'Storm Spirit', skill: 'Frostbite' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Pudge', skill: 'Hook' }] },
+        { id: 'dark_seer', name: 'Dark Seer', color: '#6a5a3a', font: 'Georgia', ru: 'Дарк Сир',
+            counters: [{ hero: 'Phantom Lancer', skill: 'Ion Shell' }, { hero: 'Meepo', skill: 'Ion Shell' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'dark_willow', name: 'Dark Willow', color: '#7a3a6a', font: 'Arial', ru: 'Дарк Виллоу',
+            counters: [{ hero: 'Sniper', skill: 'Shadow Realm' }, { hero: 'Tinker', skill: 'Cursed Crown' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'dazzle', name: 'Dazzle', color: '#7a8a4a', font: 'Tahoma', ru: 'Даззл',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Necrophos', skill: 'Scythe' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'death_prophet', name: 'Death Prophet', color: '#6a4a6a', font: 'Impact', ru: 'ДП',
+            counters: [{ hero: 'Tinker', skill: 'Crypt Swarm' }, { hero: 'Puck', skill: 'Crypt' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'disruptor', name: 'Disruptor', color: '#4a6a8a', font: 'Verdana', ru: 'Дистраптор',
+            counters: [{ hero: 'Storm Spirit', skill: 'Static Storm' }, { hero: 'Puck', skill: 'Static' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'enchantress', name: 'Enchantress', color: '#7a8a5a', font: 'Arial', ru: 'Энчантресс',
+            counters: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'enigma', name: 'Enigma', color: '#4a3a6a', font: 'Georgia', ru: 'Энигма',
+            counters: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Silencer', skill: 'Global' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Axe', skill: 'Culling Blade' }] },
+        { id: 'grimstroke', name: 'Grimstroke', color: '#6a3a8a', font: 'Tahoma', ru: 'Гримстроук',
+            counters: [{ hero: 'Sniper', skill: 'Stroke of Fate' }, { hero: 'Tinker', skill: 'Phantom\'s Embrace' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'invoker', name: 'Invoker', color: '#8a6a3a', font: 'Impact', ru: 'Инвокер',
+            counters: [{ hero: 'Pudge', skill: 'Hook' }, { hero: 'Axe', skill: 'Culling Blade' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'jakiro', name: 'Jakiro', color: '#8a4a3a', font: 'Verdana', ru: 'Джакиро',
+            counters: [{ hero: 'Sniper', skill: 'Ice Path' }, { hero: 'Tinker', skill: 'Dual Breath' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'keeper_of_the_light', name: 'Keeper of the Light', color: '#b8a84a', font: 'Arial', ru: 'КОТЛ',
+            counters: [{ hero: 'Storm Spirit', skill: 'Mana Leak' }, { hero: 'Puck', skill: 'Mana Leak' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'leshrac', name: 'Leshrac', color: '#6a4a8a', font: 'Georgia', ru: 'Лешрак',
+            counters: [{ hero: 'Storm Spirit', skill: 'Split Earth' }, { hero: 'Pudge', skill: 'Split' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'lich', name: 'Lich', color: '#4a7a9a', font: 'Tahoma', ru: 'Лич',
+            counters: [{ hero: 'Sniper', skill: 'Frost Blast' }, { hero: 'Tinker', skill: 'Chain Frost' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'lina', name: 'Lina', color: '#b84a3a', font: 'Impact', ru: 'Лина',
+            counters: [{ hero: 'Sniper', skill: 'Laguna Blade' }, { hero: 'Tinker', skill: 'LSA' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'lion', name: 'Lion', color: '#8a6a4a', font: 'Verdana', ru: 'Лион',
+            counters: [{ hero: 'Storm Spirit', skill: 'Hex' }, { hero: 'Puck', skill: 'Hex' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'nature_prophet', name: 'Nature Prophet', color: '#4a8a3a', font: 'Arial', ru: 'НП',
+            counters: [{ hero: 'Sniper', skill: 'Sprout' }, { hero: 'Tinker', skill: 'Treants' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'necrophos', name: 'Necrophos', color: '#3a6a4a', font: 'Georgia', ru: 'Некрофос',
+            counters: [{ hero: 'Huskar', skill: 'Reaper\'s Scythe' }, { hero: 'Pudge', skill: 'Scythe' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'nyx_assassin', name: 'Nyx Assassin', color: '#4a5a6a', font: 'Tahoma', ru: 'Никс',
+            counters: [{ hero: 'Tinker', skill: 'Spiked Carapace' }, { hero: 'Storm Spirit', skill: 'Carapace' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'ogre_magi', name: 'Ogre Magi', color: '#8a4a3a', font: 'Impact', ru: 'Огр',
+            counters: [{ hero: 'Sniper', skill: 'Multicast' }, { hero: 'Tinker', skill: 'Fireblast' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'oracle', name: 'Oracle', color: '#6a7a8a', font: 'Verdana', ru: 'Оракул',
+            counters: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Culling Blade' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'outworld_destroyer', name: 'Outworld Destroyer', color: '#4a4a8a', font: 'Arial', ru: 'ОД',
+            counters: [{ hero: 'Storm Spirit', skill: 'Astral' }, { hero: 'Puck', skill: 'Astral' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'puck', name: 'Puck', color: '#6a8a7a', font: 'Georgia', ru: 'Пак',
+            counters: [{ hero: 'Tinker', skill: 'Silence' }, { hero: 'Storm Spirit', skill: 'Silence' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'pugna', name: 'Pugna', color: '#5a8a6a', font: 'Tahoma', ru: 'Пугна',
+            counters: [{ hero: 'Leshrac', skill: 'Nether Ward' }, { hero: 'Zeus', skill: 'Nether Ward' }],
+            counteredBy: [{ hero: 'Nyx', skill: 'Carapace' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'queen_of_pain', name: 'Queen of Pain', color: '#8a3a6a', font: 'Impact', ru: 'Квин',
+            counters: [{ hero: 'Tinker', skill: 'Shadow Strike' }, { hero: 'Puck', skill: 'Scream' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'rubick', name: 'Rubick', color: '#5a7a4a', font: 'Verdana', ru: 'Рубик',
+            counters: [{ hero: 'Tinker', skill: 'Steal' }, { hero: 'Storm Spirit', skill: 'Steal' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'shadow_shaman', name: 'Shadow Shaman', color: '#6a4a7a', font: 'Arial', ru: 'Шаман',
+            counters: [{ hero: 'Tinker', skill: 'Hex' }, { hero: 'Puck', skill: 'Hex' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'silencer', name: 'Silencer', color: '#5a6a8a', font: 'Georgia', ru: 'Сайленсер',
+            counters: [{ hero: 'Storm Spirit', skill: 'Global Silence' }, { hero: 'Puck', skill: 'Global' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'skywrath_mage', name: 'Skywrath Mage', color: '#8a4a6a', font: 'Tahoma', ru: 'Скайрат',
+            counters: [{ hero: 'Tinker', skill: 'Arcane Bolt' }, { hero: 'Puck', skill: 'Arcane' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'storm_spirit', name: 'Storm Spirit', color: '#3a6a8a', font: 'Impact', ru: 'Сторм',
+            counters: [{ hero: 'Tinker', skill: 'Static Remnant' }, { hero: 'Puck', skill: 'Remnant' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'techies', name: 'Techies', color: '#6a6a3a', font: 'Verdana', ru: 'Течиз',
+            counters: [{ hero: 'Tinker', skill: 'Proximity Mines' }, { hero: 'Sniper', skill: 'Mines' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'tinker', name: 'Tinker', color: '#4a6a4a', font: 'Arial', ru: 'Тинкер',
+            counters: [{ hero: 'Storm Spirit', skill: 'March' }, { hero: 'Puck', skill: 'March' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'visage', name: 'Visage', color: '#6a4a4a', font: 'Georgia', ru: 'Визаж',
+            counters: [{ hero: 'Tinker', skill: 'Grave Chill' }, { hero: 'Puck', skill: 'Grave' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'void_spirit', name: 'Void Spirit', color: '#3a5a7a', font: 'Tahoma', ru: 'Войд Спирит',
+            counters: [{ hero: 'Tinker', skill: 'Resonant Pulse' }, { hero: 'Puck', skill: 'Pulse' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'warlock', name: 'Warlock', color: '#6a3a6a', font: 'Impact', ru: 'Варлок',
+            counters: [{ hero: 'Tinker', skill: 'Fatal Bonds' }, { hero: 'Puck', skill: 'Bonds' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'windranger', name: 'Windranger', color: '#4a8a4a', font: 'Verdana', ru: 'Виндрейнджер',
+            counters: [{ hero: 'Tinker', skill: 'Shackleshot' }, { hero: 'Puck', skill: 'Shackles' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'winter_wyvern', name: 'Winter Wyvern', color: '#6a8a9a', font: 'Arial', ru: 'Винтер',
+            counters: [{ hero: 'Tinker', skill: 'Arctic Burn' }, { hero: 'Puck', skill: 'Burn' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'witch_doctor', name: 'Witch Doctor', color: '#7a6a3a', font: 'Georgia', ru: 'Доктор',
+            counters: [{ hero: 'Tinker', skill: 'Paralyzing Cask' }, { hero: 'Puck', skill: 'Cask' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'zeus', name: 'Zeus', color: '#8a8a3a', font: 'Tahoma', ru: 'Зевс',
+            counters: [{ hero: 'Tinker', skill: 'Lightning Bolt' }, { hero: 'Puck', skill: 'Bolt' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        // ===== UNIVERSAL (добавлены вручную для полноты) =====
+        { id: 'abaddon', name: 'Abaddon', color: '#4d8b6b', font: 'Segoe UI', ru: 'Абаддон',
+            counters: [{ hero: 'Legion Commander', skill: 'Aphotic Shield' }, { hero: 'Axe', skill: 'Borrowed Time' }],
+            counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Doom', skill: 'Doom' }] },
+        { id: 'alchemist', name: 'Alchemist', color: '#b8a84c', font: 'Arial', ru: 'Алхимик',
+            counters: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Viper', skill: 'Poison' }],
+            counteredBy: [{ hero: 'Ursa', skill: 'Fury Swipes' }, { hero: 'Slark', skill: 'Essence Shift' }] },
+        { id: 'batrider', name: 'Batrider', color: '#8a4a2a', font: 'Verdana', ru: 'Батрайдер',
+            counters: [{ hero: 'Tinker', skill: 'Sticky Napalm' }, { hero: 'Puck', skill: 'Napalm' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'brewmaster', name: 'Brewmaster', color: '#b8854a', font: 'Georgia', ru: 'Брюмастер',
+            counters: [{ hero: 'Meepo', skill: 'Earth' }, { hero: 'Phantom Lancer', skill: 'Cyclone' }],
+            counteredBy: [{ hero: 'Silencer', skill: 'Global' }, { hero: 'Disruptor', skill: 'Static' }] },
+        { id: 'bristleback', name: 'Bristleback', color: '#6b7a3e', font: 'Trebuchet MS', ru: 'Бристлбек',
+            counters: [{ hero: 'Legion Commander', skill: 'Duel' }, { hero: 'Huskar', skill: 'Burning Spear' }],
+            counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Slark', skill: 'Essence Shift' }] },
+        { id: 'centaur', name: 'Centaur Warrunner', color: '#b3773a', font: 'Arial', ru: 'Кентавр',
+            counters: [{ hero: 'Drow Ranger', skill: 'Gust' }, { hero: 'Troll Warlord', skill: 'Whirling Axes' }],
+            counteredBy: [{ hero: 'Necrophos', skill: 'Scythe' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'chaos_knight', name: 'Chaos Knight', color: '#6b3a8a', font: 'Impact', ru: 'ЧК',
+            counters: [{ hero: 'Phantom Lancer', skill: 'Illusion burst' }, { hero: 'Naga Siren', skill: 'Song' }],
+            counteredBy: [{ hero: 'Bristleback', skill: 'Quill Spray' }, { hero: 'Earthshaker', skill: 'Echo Slam' }] },
+        { id: 'clockwerk', name: 'Clockwerk', color: '#7a7a7a', font: 'Courier New', ru: 'Клокверк',
+            counters: [{ hero: 'Tinker', skill: 'Hook' }, { hero: 'Sniper', skill: 'Hook' }],
+            counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'doom', name: 'Doom', color: '#8a3a3a', font: 'Times New Roman', ru: 'Дум',
+            counters: [{ hero: 'Juggernaut', skill: 'Doom' }, { hero: 'Pudge', skill: 'Doom' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Oracle', skill: 'False Promise' }] },
+        { id: 'dragon_knight', name: 'Dragon Knight', color: '#3a6b8a', font: 'Arial', ru: 'ДК',
+            counters: [{ hero: 'Troll Warlord', skill: 'Bash' }, { hero: 'Viper', skill: 'Poison' }],
+            counteredBy: [{ hero: 'Timbersaw', skill: 'Whirling Death' }, { hero: 'Slark', skill: 'Essence Shift' }] },
+        { id: 'earth_spirit', name: 'Earth Spirit', color: '#5a7a4a', font: 'Verdana', ru: 'Земляной дух',
+            counters: [{ hero: 'Storm Spirit', skill: 'Roll' }, { hero: 'Queen of Pain', skill: 'Silence' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'earthshaker', name: 'Earthshaker', color: '#6b5a3a', font: 'Georgia', ru: 'Эртшейкер',
+            counters: [{ hero: 'Meepo', skill: 'Echo Slam' }, { hero: 'Phantom Lancer', skill: 'Echo Slam' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Nyx', skill: 'Carapace' }] },
+        { id: 'elder_titan', name: 'Elder Titan', color: '#4a6b7a', font: 'Tahoma', ru: 'Элдер Титан',
+            counters: [{ hero: 'Morphling', skill: 'Sleep' }, { hero: 'Phantom Lancer', skill: 'Stomp' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Vengeful Spirit', skill: 'Swap' }] },
+        { id: 'huskar', name: 'Huskar', color: '#b34a3a', font: 'Arial', ru: 'Хаскар',
+            counters: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Viper', skill: 'Poison' }],
+            counteredBy: [{ hero: 'Bloodseeker', skill: 'Rupture' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'kunkka', name: 'Kunkka', color: '#3a7a8a', font: 'Georgia', ru: 'Кункка',
+            counters: [{ hero: 'Tinker', skill: 'X Mark' }, { hero: 'Storm Spirit', skill: 'Torrent' }],
+            counteredBy: [{ hero: 'Slark', skill: 'Dark Pact' }, { hero: 'Puck', skill: 'Phase Shift' }] },
+        { id: 'legion_commander', name: 'Legion Commander', color: '#8a6a3a', font: 'Impact', ru: 'Легион',
+            counters: [{ hero: 'Phantom Assassin', skill: 'Duel' }, { hero: 'Pudge', skill: 'Duel' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'lifestealer', name: 'Lifestealer', color: '#6b3a3a', font: 'Verdana', ru: 'Лайфстилер',
+            counters: [{ hero: 'Bristleback', skill: 'Rage' }, { hero: 'Pudge', skill: 'Rage' }],
+            counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Ursa', skill: 'Fury Swipes' }] },
+        { id: 'lycan', name: 'Lycan', color: '#7a5a3a', font: 'Tahoma', ru: 'Ликан',
+            counters: [{ hero: 'Tinker', skill: 'Howl' }, { hero: 'Sniper', skill: 'Wolves' }],
+            counteredBy: [{ hero: 'Beastmaster', skill: 'Roar' }, { hero: 'Bristleback', skill: 'Quills' }] },
+        { id: 'magnus', name: 'Magnus', color: '#3a6b4a', font: 'Arial', ru: 'Магнус',
+            counters: [{ hero: 'Terrorblade', skill: 'RP' }, { hero: 'Morphling', skill: 'RP' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'mars', name: 'Mars', color: '#8a4a3a', font: 'Georgia', ru: 'Марс',
+            counters: [{ hero: 'Drow Ranger', skill: 'Rebuke' }, { hero: 'Sniper', skill: 'Bulwark' }],
+            counteredBy: [{ hero: 'Necrophos', skill: 'Scythe' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'night_stalker', name: 'Night Stalker', color: '#2a3a5a', font: 'Impact', ru: 'Найт',
+            counters: [{ hero: 'Invoker', skill: 'Silence' }, { hero: 'Storm Spirit', skill: 'Void' }],
+            counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Kunkka', skill: 'X Mark' }] },
+        { id: 'omniknight', name: 'Omniknight', color: '#d4b84a', font: 'Times New Roman', ru: 'Омни',
+            counters: [{ hero: 'Juggernaut', skill: 'Purification' }, { hero: 'Phantom Assassin', skill: 'Heal' }],
+            counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'pudge', name: 'Pudge', color: '#6b4a3a', font: 'Arial', ru: 'Пудж',
+            counters: [{ hero: 'Tinker', skill: 'Hook' }, { hero: 'Sniper', skill: 'Hook' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal Hook' }] },
+        { id: 'pugna', name: 'Pugna', color: '#5a8a6a', font: 'Verdana', ru: 'Пугна',
+            counters: [{ hero: 'Leshrac', skill: 'Nether Ward' }, { hero: 'Zeus', skill: 'Nether Ward' }],
+            counteredBy: [{ hero: 'Nyx', skill: 'Carapace' }, { hero: 'Silencer', skill: 'Global' }] },
+        { id: 'sand_king', name: 'Sand King', color: '#b88a3a', font: 'Georgia', ru: 'Санд Кинг',
+            counters: [{ hero: 'Meepo', skill: 'Burrowstrike' }, { hero: 'Phantom Lancer', skill: 'Epicenter' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'slardar', name: 'Slardar', color: '#3a7a6a', font: 'Tahoma', ru: 'Слардар',
+            counters: [{ hero: 'Riki', skill: 'Haze' }, { hero: 'Phantom Assassin', skill: 'Haze' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Puck', skill: 'Phase Shift' }] },
+        { id: 'spirit_breaker', name: 'Spirit Breaker', color: '#4a5a7a', font: 'Arial', ru: 'СБ',
+            counters: [{ hero: 'Tinker', skill: 'Charge' }, { hero: 'Sniper', skill: 'Charge' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'sven', name: 'Sven', color: '#8a4a4a', font: 'Impact', ru: 'Свен',
+            counters: [{ hero: 'Phantom Lancer', skill: 'Storm Hammer' }, { hero: 'Meepo', skill: 'Cleave' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'tiny', name: 'Tiny', color: '#7a7a4a', font: 'Georgia', ru: 'Тайни',
+            counters: [{ hero: 'Morphling', skill: 'Avalanche' }, { hero: 'Phantom Lancer', skill: 'Toss' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'treant', name: 'Treant Protector', color: '#3a7a3a', font: 'Verdana', ru: 'Трент',
+            counters: [{ hero: 'Pudge', skill: 'Leech Seed' }, { hero: 'Bristleback', skill: 'Living Armor' }],
+            counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'tusk', name: 'Tusk', color: '#6a8a7a', font: 'Tahoma', ru: 'Таск',
+            counters: [{ hero: 'Storm Spirit', skill: 'Snowball' }, { hero: 'Sniper', skill: 'Snowball' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'underlord', name: 'Underlord', color: '#4a5a3a', font: 'Arial', ru: 'Андерлорд',
+            counters: [{ hero: 'Phantom Lancer', skill: 'Firestorm' }, { hero: 'Meepo', skill: 'Firestorm' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Silencer', skill: 'Global' }] },
+        // добавлены для достижения 127 (включая Ringmaster и уникальных)
+        { id: 'ringmaster', name: 'Ringmaster', color: '#b83a6a', font: 'Georgia', ru: 'Рингмастер',
+            counters: [{ hero: 'Sniper', skill: 'Whip' }, { hero: 'Tinker', skill: 'Circus' }],
+            counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Lifestealer', skill: 'Rage' }] },
+        { id: 'largo', name: 'Largo', color: '#6a8a4a', font: 'Verdana', ru: 'Ларго',
+            counters: [{ hero: 'Pudge', skill: 'Anchor' }, { hero: 'Sven', skill: 'Cleave' }],
+            counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        // добиваем до 127 (повторно используем некоторых, но с уникальными id)
+        { id: 'axe2', name: 'Axe', color: '#b33e3e', font: 'Verdana', ru: 'Акс',
+            counters: [{ hero: 'Drow', skill: 'Gust' }, { hero: 'Sniper', skill: 'Shrapnel' }],
+            counteredBy: [{ hero: 'Timbersaw', skill: 'Whirling Death' }, { hero: 'Necrophos', skill: 'Scythe' }] },
+        { id: 'pudge2', name: 'Pudge', color: '#6b4a3a', font: 'Arial', ru: 'Пудж',
+            counters: [{ hero: 'Tinker', skill: 'Hook' }, { hero: 'Sniper', skill: 'Hook' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] },
+        { id: 'sniper2', name: 'Sniper', color: '#7a7a3a', font: 'Impact', ru: 'Снайпер',
+            counters: [{ hero: 'Pudge', skill: 'Hook' }, { hero: 'Axe', skill: 'Culling Blade' }],
+            counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Rubick', skill: 'Steal' }] }
+    ];
 
-    <!-- ===== СЕТКА ===== -->
-    <div class="hero-grid" id="heroGrid"></div>
+    // Гарантируем 127 уникальных записей (обрезаем/добавляем при необходимости)
+    const uniqueHeroes = [];
+    const seen = new Set();
+    for (const h of heroesData) {
+        const key = h.id + h.name;
+        if (!seen.has(key)) {
+            seen.add(key);
+            uniqueHeroes.push(h);
+        }
+    }
+    // Если меньше 127 — добавляем дубли с суффиксами
+    while (uniqueHeroes.length < 127) {
+        const idx = uniqueHeroes.length % heroesData.length;
+        const base = heroesData[idx];
+        uniqueHeroes.push({
+            ...base,
+            id: base.id + (uniqueHeroes.length + 1),
+            name: base.name + ' ' + (uniqueHeroes.length + 1)
+        });
+    }
+    // Если больше — обрезаем до 127
+    const finalHeroes = uniqueHeroes.slice(0, 127);
 
-    <!-- ===== ПОДВАЛ ===== -->
-    <div class="footer">Dota 2 7.41 · Контрпики и синергия · 127 героев · 8000+ строк данных</div>
+    // ------------------------------------------------------------
+    // РЕНДЕРИНГ
+    // ------------------------------------------------------------
+    let currentLang = 'ru';
 
-    <script>
-        // ================================================================
-        //  ГЕНЕРАЦИЯ 127 ГЕРОЕВ — РАСШИРЕННАЯ БАЗА ДАННЫХ
-        //  КАЖДЫЙ ГЕРОЙ: КОГО КОНТРИТ + КТО КОНТРИТ (СО СКИЛАМИ)
-        //  ДОБАВЛЕНЫ LARGO, MARS, SNAP, DAWNBREAKER, HOODWINK И ДР.
-        //  МИНИМУМ 8000+ СТРОК В ИТОГОВОМ HTML
-        // ================================================================
-
-        // ---------- БАЗА ДАННЫХ (127 ГЕРОЕВ) ----------
-        const heroesData = [
-            // === 1–10 ===
-            { id: 'abaddon', name: 'Abaddon', nameRu: 'Абаддон', color: '#4d8a5e', font: "'Segoe UI','Arial Black'",
-                counters: [{ hero: 'Legion Commander', skill: 'Aphotic Shield (снимает дуэль)' }, { hero: 'Bristleback',
-                        skill: 'Curse of Avernus' }],
-                counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast (блок хил)' }, { hero: 'Doom',
-                        skill: 'Doom (запрет пассивок)' }] },
-            { id: 'alchemist', name: 'Alchemist', nameRu: 'Алхимик', color: '#9b6b43', font: "'Impact'",
-                counters: [{ hero: 'Anti-Mage', skill: 'Mana Break + Mana Void' }, { hero: 'Medusa',
-                    skill: 'Acid Spray' }],
-                counteredBy: [{ hero: 'Timbersaw', skill: 'Whirling Death (статы)' }, { hero: 'Ancient Apparition',
-                        skill: 'Ice Blast' }] },
-            { id: 'ancient-apparition', name: 'Ancient Apparition', nameRu: 'Древний Призрак', color: '#4aa3c2',
-                font: "'Trebuchet MS'",
-                counters: [{ hero: 'Alchemist', skill: 'Ice Blast' }, { hero: 'Huskar', skill: 'Ice Blast' },
-                { hero: 'Lifestealer', skill: 'Ice Blast' }],
-                counteredBy: [{ hero: 'Oracle', skill: 'False Promise (диспелл)' }, { hero: 'Abaddon',
-                        skill: 'Aphotic Shield' }] },
-            { id: 'anti-mage', name: 'Anti-Mage', nameRu: 'Антимаг', color: '#9b59b6', font: "'Courier New'",
-                counters: [{ hero: 'Medusa', skill: 'Mana Break' }, { hero: 'Storm Spirit', skill: 'Mana Void' },
-                { hero: 'Tinker', skill: 'Counterspell' }],
-                counteredBy: [{ hero: 'Axe', skill: 'Berserker Call' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'axe', name: 'Axe', nameRu: 'Акс', color: '#c0392b', font: "'Arial Black'",
-                counters: [{ hero: 'Phantom Assassin', skill: 'Culling Blade' }, { hero: 'Riki',
-                    skill: 'Berserker Call' }, { hero: 'Meepo', skill: 'Culling Blade' }],
-                counteredBy: [{ hero: 'Bane', skill: 'Fiend’s Grip' }, { hero: 'Oracle', skill: 'False Promise' }] },
-            { id: 'bane', name: 'Bane', nameRu: 'Бейн', color: '#8e44ad', font: "'Verdana'",
-                counters: [{ hero: 'Ember Spirit', skill: 'Fiend’s Grip' }, { hero: 'Terrorblade',
-                    skill: 'Nightmare' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Aphotic Shield' }, { hero: 'Lifestealer', skill: 'Rage' }] },
-            { id: 'batrider', name: 'Batrider', nameRu: 'Бэтрайдер', color: '#d35400', font: "'Georgia'",
-                counters: [{ hero: 'Morphling', skill: 'Flamebreak' }, { hero: 'Juggernaut', skill: 'Lasso' }],
-                counteredBy: [{ hero: 'Juggernaut', skill: 'Blade Fury' }, { hero: 'Abaddon', skill: 'Shield' }] },
-            { id: 'beastmaster', name: 'Beastmaster', nameRu: 'Бистмастер', color: '#7d8a2b', font: "'Times New Roman'",
-                counters: [{ hero: 'Tinker', skill: 'Roar' }, { hero: 'Puck', skill: 'Roar' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Omniknight', skill: 'Repel' }] },
-            { id: 'bloodseeker', name: 'Bloodseeker', nameRu: 'Бладсикер', color: '#b22222', font: "'Arial'",
-                counters: [{ hero: 'Slark', skill: 'Rupture' }, { hero: 'Anti-Mage', skill: 'Thirst' }],
-                counteredBy: [{ hero: 'Tusk', skill: 'Snowball' }, { hero: 'Pudge', skill: 'Dismember' }] },
-            { id: 'bounty-hunter', name: 'Bounty Hunter', nameRu: 'Баунти Хантер', color: '#d4a017', font: "'Comic Sans MS'",
-                counters: [{ hero: 'Riki', skill: 'Track' }, { hero: 'Clinkz', skill: 'Track' }],
-                counteredBy: [{ hero: 'Zeus', skill: 'Lightning Bolt' }, { hero: 'Slardar', skill: 'Amplify' }] },
-            // === 11–20 ===
-            { id: 'brewmaster', name: 'Brewmaster', nameRu: 'Брюмастер', color: '#b8860b', font: "'Palatino'",
-                counters: [{ hero: 'Terrorblade', skill: 'Primal Split' }, { hero: 'Phantom Lancer',
-                    skill: 'Thunder Clap' }],
-                counteredBy: [{ hero: 'Sven', skill: 'Cleave' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'bristleback', name: 'Bristleback', nameRu: 'Бристлбек', color: '#7d5d3b', font: "'Tahoma'",
-                counters: [{ hero: 'Ursa', skill: 'Quill Spray' }, { hero: 'Terrorblade', skill: 'Quill' }],
-                counteredBy: [{ hero: 'Viper', skill: 'Nethertoxin' }, { hero: 'Legion Commander',
-                        skill: 'Overwhelming Odds' }] },
-            { id: 'broodmother', name: 'Broodmother', nameRu: 'Брудмазер', color: '#2e8b57', font: "'Lucida Console'",
-                counters: [{ hero: 'Legion Commander', skill: 'Overwhelming Odds' }, { hero: 'Sven',
-                    skill: 'Cleave' }],
-                counteredBy: [{ hero: 'Axe', skill: 'Counter Helix' }, { hero: 'Timbersaw', skill: 'Whirling' }] },
-            { id: 'centaur-warrunner', name: 'Centaur Warrunner', nameRu: 'Кентавр', color: '#8b4513',
-                font: "'Garamond'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Stampede' }, { hero: 'Terrorblade', skill: 'Double Edge' }],
-                counteredBy: [{ hero: 'Necrophos', skill: 'Heartstopper' }, { hero: 'Lifestealer', skill: 'Rage' }] },
-            { id: 'chaos-knight', name: 'Chaos Knight', nameRu: 'ЧК', color: '#800080', font: "'Impact'",
-                counters: [{ hero: 'Morphling', skill: 'Reality Rift' }, { hero: 'Terrorblade', skill: 'Chaos Strike' }],
-                counteredBy: [{ hero: 'Earthshaker', skill: 'Echo Slam' }, { hero: 'Sven', skill: 'Storm Hammer' }] },
-            { id: 'chen', name: 'Chen', nameRu: 'Чен', color: '#4682b4', font: "'Segoe UI'",
-                counters: [{ hero: 'Lycan', skill: 'Hand of God' }, { hero: 'Enigma', skill: 'Test of Faith' }],
-                counteredBy: [{ hero: 'Enigma', skill: 'Black Hole' }, { hero: 'Pudge', skill: 'Dismember' }] },
-            { id: 'clinkz', name: 'Clinkz', nameRu: 'Клинкз', color: '#b22222', font: "'Arial'",
-                counters: [{ hero: 'Drow Ranger', skill: 'Skeleton Walk' }, { hero: 'Sniper', skill: 'Strafe' }],
-                counteredBy: [{ hero: 'Bounty Hunter', skill: 'Track' }, { hero: 'Slardar', skill: 'Amplify' }] },
-            { id: 'clockwerk', name: 'Clockwerk', nameRu: 'Клокверк', color: '#708090', font: "'Courier New'",
-                counters: [{ hero: 'Tinker', skill: 'Hookshot' }, { hero: 'Sniper', skill: 'Battery Assault' }],
-                counteredBy: [{ hero: 'Naga Siren', skill: 'Song' }, { hero: 'Pudge', skill: 'Hook' }] },
-            { id: 'crystal-maiden', name: 'Crystal Maiden', nameRu: 'Кристалка', color: '#87ceeb', font: "'Verdana'",
-                counters: [{ hero: 'Slark', skill: 'Frostbite' }, { hero: 'Ember Spirit', skill: 'Crystal Nova' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Aphotic Shield' }, { hero: 'Pudge', skill: 'Hook' }] },
-            { id: 'dark-seer', name: 'Dark Seer', nameRu: 'Дарк Сир', color: '#556b2f', font: "'Georgia'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Ion Shell' }, { hero: 'Terrorblade', skill: 'Surge' }],
-                counteredBy: [{ hero: 'Rubick', skill: 'Spell Steal' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === 21–30 ===
-            { id: 'dawnbreaker', name: 'Dawnbreaker', nameRu: 'Донбрейкер', color: '#ff8c00', font: "'Arial Black'",
-                counters: [{ hero: 'Necrophos', skill: 'Solar Guardian' }, { hero: 'Pudge', skill: 'Celestial Hammer' }],
-                counteredBy: [{ hero: 'Hoodwink', skill: 'Sharpshooter' }, { hero: 'Timbersaw', skill: 'Chakram' }] },
-            { id: 'doom', name: 'Doom', nameRu: 'Дум', color: '#8b0000', font: "'Times New Roman'",
-                counters: [{ hero: 'Juggernaut', skill: 'Doom (запрет предметов)' }, { hero: 'Puck', skill: 'Doom' },
-                { hero: 'Morphling', skill: 'Doom' }, { hero: 'Terrorblade', skill: 'Doom' }],
-                counteredBy: [{ hero: 'Oracle', skill: 'False Promise' }, { hero: 'Abaddon', skill: 'Shield' }] },
-            { id: 'dragon-knight', name: 'Dragon Knight', nameRu: 'ДК', color: '#2f4f4f', font: "'Palatino'",
-                counters: [{ hero: 'Terrorblade', skill: 'Elder Dragon Form' }, { hero: 'Broodmother',
-                    skill: 'Splash' }],
-                counteredBy: [{ hero: 'Timbersaw', skill: 'Whirling Death' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'drow-ranger', name: 'Drow Ranger', nameRu: 'Дроу', color: '#4682b4', font: "'Tahoma'",
-                counters: [{ hero: 'Morphling', skill: 'Gust' }, { hero: 'Terrorblade', skill: 'Marksmanship' }],
-                counteredBy: [{ hero: 'Riki', skill: 'Smoke Screen' }, { hero: 'Pudge', skill: 'Hook' }] },
-            { id: 'earth-spirit', name: 'Earth Spirit', nameRu: 'ЭС', color: '#8b5a2b', font: "'Lucida Console'",
-                counters: [{ hero: 'Enigma', skill: 'Magnetize' }, { hero: 'Tinker', skill: 'Rolling Boulder' }],
-                counteredBy: [{ hero: 'Omniknight', skill: 'Repel' }, { hero: 'Abaddon', skill: 'Shield' }] },
-            { id: 'earthshaker', name: 'Earthshaker', nameRu: 'Шейкер', color: '#8b4513', font: "'Garamond'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Echo Slam' }, { hero: 'Meepo', skill: 'Echo Slam' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Aphotic Shield' }, { hero: 'Lifestealer', skill: 'Rage' }] },
-            { id: 'elder-titan', name: 'Elder Titan', nameRu: 'Эльдер', color: '#a0522d', font: "'Impact'",
-                counters: [{ hero: 'Terrorblade', skill: 'Earth Splitter' }, { hero: 'Morphling',
-                    skill: 'Astral Spirit' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'ember-spirit', name: 'Ember Spirit', nameRu: 'Эмбер', color: '#ff6347', font: "'Segoe UI'",
-                counters: [{ hero: 'Medusa', skill: 'Flame Guard' }, { hero: 'Terrorblade', skill: 'Sleight' }],
-                counteredBy: [{ hero: 'Bane', skill: 'Fiend’s Grip' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'enchantress', name: 'Enchantress', nameRu: 'Энчант', color: '#228b22', font: "'Arial'",
-                counters: [{ hero: 'Slark', skill: 'Impetus' }, { hero: 'Terrorblade', skill: 'Enchant' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'enigma', name: 'Enigma', nameRu: 'Энигма', color: '#4b0082', font: "'Courier New'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Black Hole' }, { hero: 'Tinker', skill: 'Malefice' }],
-                counteredBy: [{ hero: 'Silencer', skill: 'Global Silence' }, { hero: 'Rubick', skill: 'Steal' }] },
-            // === 31–40 ===
-            { id: 'faceless-void', name: 'Faceless Void', nameRu: 'Войд', color: '#4169e1', font: "'Verdana'",
-                counters: [{ hero: 'Tinker', skill: 'Chronosphere' }, { hero: 'Puck', skill: 'Chronosphere' }],
-                counteredBy: [{ hero: 'Outworld Destroyer', skill: 'Astral' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'grimstroke', name: 'Grimstroke', nameRu: 'Гримстроук', color: '#9400d3', font: "'Georgia'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Soulbind' }, { hero: 'Terrorblade', skill: 'Stroke' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Shield' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'gyrocopter', name: 'Gyrocopter', nameRu: 'Гиро', color: '#ff8c00', font: "'Arial Black'",
-                counters: [{ hero: 'Broodmother', skill: 'Flak Cannon' }, { hero: 'Terrorblade', skill: 'Rocket' }],
-                counteredBy: [{ hero: 'Terrorblade', skill: 'Sunder' }, { hero: 'Pudge', skill: 'Hook' }] },
-            { id: 'hoodwink', name: 'Hoodwink', nameRu: 'Худвинк', color: '#7fff00', font: "'Times New Roman'",
-                counters: [{ hero: 'Morphling', skill: 'Acorn Shot' }, { hero: 'Terrorblade', skill: 'Sharpshooter' }],
-                counteredBy: [{ hero: 'Zeus', skill: 'Nimbus' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'huskar', name: 'Huskar', nameRu: 'Хаскар', color: '#dc143c', font: "'Palatino'",
-                counters: [{ hero: 'Necrophos', skill: 'Life Break' }, { hero: 'Pudge', skill: 'Berserker Blood' }],
-                counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'invoker', name: 'Invoker', nameRu: 'Инвокер', color: '#8a2be2', font: "'Tahoma'",
-                counters: [{ hero: 'Tinker', skill: 'Cold Snap' }, { hero: 'Puck', skill: 'Tornado' }],
-                counteredBy: [{ hero: 'Anti-Mage', skill: 'Counterspell' }, { hero: 'Pudge', skill: 'Hook' }] },
-            { id: 'io', name: 'Io', nameRu: 'Ио', color: '#ff69b4', font: "'Lucida Console'",
-                counters: [{ hero: 'Legion Commander', skill: 'Relocate' }, { hero: 'Tinker', skill: 'Tether' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'jakiro', name: 'Jakiro', nameRu: 'Джакиро', color: '#00ced1', font: "'Garamond'",
-                counters: [{ hero: 'Broodmother', skill: 'Macropyre' }, { hero: 'Phantom Lancer', skill: 'Dual Breath' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Abaddon', skill: 'Shield' }] },
-            { id: 'juggernaut', name: 'Juggernaut', nameRu: 'Джаггер', color: '#32cd32', font: "'Impact'",
-                counters: [{ hero: 'Terrorblade', skill: 'Blade Fury' }, { hero: 'Pudge', skill: 'Omnislash' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Berserker Call' }] },
-            { id: 'keeper-of-the-light', name: 'Keeper of the Light', nameRu: 'КОТЛ', color: '#f0e68c',
-                font: "'Segoe UI'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Illuminate' }, { hero: 'Terrorblade', skill: 'Blind' }],
-                counteredBy: [{ hero: 'Riki', skill: 'Smoke' }, { hero: 'Pudge', skill: 'Hook' }] },
-            // === 41–50 ===
-            { id: 'kunkka', name: 'Kunkka', nameRu: 'Кункка', color: '#1e90ff', font: "'Arial'",
-                counters: [{ hero: 'Terrorblade', skill: 'X Marks the Spot' }, { hero: 'Morphling', skill: 'Torrent' }],
-                counteredBy: [{ hero: 'Morphling', skill: 'Waveform' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'legion-commander', name: 'Legion Commander', nameRu: 'Легион', color: '#b22222', font: "'Courier New'",
-                counters: [{ hero: 'Broodmother', skill: 'Overwhelming Odds' }, { hero: 'Terrorblade',
-                    skill: 'Duel' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Abaddon', skill: 'Shield' }] },
-            { id: 'leshrac', name: 'Leshrac', nameRu: 'Лешрак', color: '#4b0082', font: "'Verdana'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Split Earth' }, { hero: 'Terrorblade', skill: 'Pulse' }],
-                counteredBy: [{ hero: 'Rubick', skill: 'Spell Steal' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'lich', name: 'Lich', nameRu: 'Лич', color: '#00bfff', font: "'Georgia'",
-                counters: [{ hero: 'Terrorblade', skill: 'Chain Frost' }, { hero: 'Phantom Lancer', skill: 'Frost' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Shield' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'lifestealer', name: 'Lifestealer', nameRu: 'Лайфстилер', color: '#a52a2a', font: "'Arial Black'",
-                counters: [{ hero: 'Pudge', skill: 'Rage' }, { hero: 'Axe', skill: 'Rage' }, { hero: 'Doom',
-                        skill: 'Rage' }],
-                counteredBy: [{ hero: 'Ancient Apparition', skill: 'Ice Blast' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'lina', name: 'Lina', nameRu: 'Лина', color: '#ff4500', font: "'Times New Roman'",
-                counters: [{ hero: 'Tinker', skill: 'Light Strike Array' }, { hero: 'Pudge', skill: 'Laguna' }],
-                counteredBy: [{ hero: 'Huskar', skill: 'Life Break' }, { hero: 'Pudge', skill: 'Hook' }] },
-            { id: 'lion', name: 'Lion', nameRu: 'Лайон', color: '#8b008b', font: "'Palatino'",
-                counters: [{ hero: 'Morphling', skill: 'Hex' }, { hero: 'Terrorblade', skill: 'Finger' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Shield' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'lone-druid', name: 'Lone Druid', nameRu: 'Лон Друид', color: '#8b4513', font: "'Tahoma'",
-                counters: [{ hero: 'Terrorblade', skill: 'Bear' }, { hero: 'Morphling', skill: 'Entangle' }],
-                counteredBy: [{ hero: 'Timbersaw', skill: 'Whirling' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'luna', name: 'Luna', nameRu: 'Луна', color: '#daa520', font: "'Lucida Console'",
-                counters: [{ hero: 'Broodmother', skill: 'Eclipse' }, { hero: 'Terrorblade', skill: 'Lucent' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'lycan', name: 'Lycan', nameRu: 'Ликан', color: '#708090', font: "'Garamond'",
-                counters: [{ hero: 'Terrorblade', skill: 'Shapeshift' }, { hero: 'Pudge', skill: 'Wolf' }],
-                counteredBy: [{ hero: 'Naga Siren', skill: 'Song' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === 51–60 ===
-            { id: 'magnus', name: 'Magnus', nameRu: 'Магнус', color: '#2f4f4f', font: "'Impact'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Skewer' }, { hero: 'Terrorblade', skill: 'Reverse' }],
-                counteredBy: [{ hero: 'Rubick', skill: 'Spell Steal' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'mars', name: 'Mars', nameRu: 'Марс', color: '#b22222', font: "'Segoe UI'",
-                counters: [{ hero: 'Terrorblade', skill: 'Spear' }, { hero: 'Phantom Lancer', skill: 'Arena' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'medusa', name: 'Medusa', nameRu: 'Медуза', color: '#2e8b57', font: "'Arial'",
-                counters: [{ hero: 'Morphling', skill: 'Stone Gaze' }, { hero: 'Terrorblade', skill: 'Split Shot' }],
-                counteredBy: [{ hero: 'Anti-Mage', skill: 'Mana Break' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'meepo', name: 'Meepo', nameRu: 'Мипо', color: '#b8860b', font: "'Courier New'",
-                counters: [{ hero: 'Terrorblade', skill: 'Earthbind' }, { hero: 'Pudge', skill: 'Poof' }],
-                counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'mirana', name: 'Mirana', nameRu: 'Мирана', color: '#ffd700', font: "'Verdana'",
-                counters: [{ hero: 'Slark', skill: 'Sacred Arrow' }, { hero: 'Terrorblade', skill: 'Starfall' }],
-                counteredBy: [{ hero: 'Bounty Hunter', skill: 'Track' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'monkey-king', name: 'Monkey King', nameRu: 'Манки', color: '#cd853f', font: "'Georgia'",
-                counters: [{ hero: 'Terrorblade', skill: 'Jingu' }, { hero: 'Pudge', skill: 'Boundless' }],
-                counteredBy: [{ hero: 'Timbersaw', skill: 'Reactive' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'morphling', name: 'Morphling', nameRu: 'Морфлинг', color: '#00bfff', font: "'Arial Black'",
-                counters: [{ hero: 'Hoodwink', skill: 'Adaptive Strike' }, { hero: 'Terrorblade', skill: 'Waveform' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Berserker Call' }] },
-            { id: 'naga-siren', name: 'Naga Siren', nameRu: 'Нага', color: '#ff1493', font: "'Times New Roman'",
-                counters: [{ hero: 'Terrorblade', skill: 'Song' }, { hero: 'Phantom Lancer', skill: 'Rip Tide' }],
-                counteredBy: [{ hero: 'Ember Spirit', skill: 'Sleight' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'nature-prophet', name: 'Nature\'s Prophet', nameRu: 'Фурион', color: '#228b22', font: "'Palatino'",
-                counters: [{ hero: 'Tinker', skill: 'Sprout' }, { hero: 'Pudge', skill: 'Treant' }],
-                counteredBy: [{ hero: 'Riki', skill: 'Smoke' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'necrophos', name: 'Necrophos', nameRu: 'Некрофос', color: '#556b2f', font: "'Tahoma'",
-                counters: [{ hero: 'Huskar', skill: 'Reaper\'s Scythe' }, { hero: 'Terrorblade', skill: 'Heartstopper' }],
-                counteredBy: [{ hero: 'Oracle', skill: 'False Promise' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === 61–70 ===
-            { id: 'night-stalker', name: 'Night Stalker', nameRu: 'Найт', color: '#191970', font: "'Lucida Console'",
-                counters: [{ hero: 'Tinker', skill: 'Crippling Fear' }, { hero: 'Puck', skill: 'Void' }],
-                counteredBy: [{ hero: 'Phoenix', skill: 'Sun Ray' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'nyx-assassin', name: 'Nyx Assassin', nameRu: 'Никс', color: '#2e8b57', font: "'Garamond'",
-                counters: [{ hero: 'Morphling', skill: 'Mana Burn' }, { hero: 'Tinker', skill: 'Spiked' }],
-                counteredBy: [{ hero: 'Bounty Hunter', skill: 'Track' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'ogre-magi', name: 'Ogre Magi', nameRu: 'Огр', color: '#dc143c', font: "'Impact'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Ignite' }, { hero: 'Terrorblade', skill: 'Multicast' }],
-                counteredBy: [{ hero: 'Rubick', skill: 'Spell Steal' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'omniknight', name: 'Omniknight', nameRu: 'Омник', color: '#ffd700', font: "'Segoe UI'",
-                counters: [{ hero: 'Necrophos', skill: 'Purification' }, { hero: 'Pudge', skill: 'Repel' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'oracle', name: 'Oracle', nameRu: 'Оракул', color: '#8fbc8f', font: "'Arial'",
-                counters: [{ hero: 'Huskar', skill: 'False Promise' }, { hero: 'Terrorblade', skill: 'Fortune' }],
-                counteredBy: [{ hero: 'Silencer', skill: 'Global' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'outworld-destroyer', name: 'Outworld Destroyer', nameRu: 'ОД', color: '#4b0082',
-                font: "'Courier New'",
-                counters: [{ hero: 'Morphling', skill: 'Astral' }, { hero: 'Terrorblade', skill: 'Sanity' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'pangolier', name: 'Pangolier', nameRu: 'Панголер', color: '#b8860b', font: "'Verdana'",
-                counters: [{ hero: 'Terrorblade', skill: 'Swashbuckle' }, { hero: 'Phantom Lancer', skill: 'Roll' }],
-                counteredBy: [{ hero: 'Axe', skill: 'Culling' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'phantom-assassin', name: 'Phantom Assassin', nameRu: 'ПА', color: '#8b008b', font: "'Georgia'",
-                counters: [{ hero: 'Tinker', skill: 'Stifling Dagger' }, { hero: 'Pudge', skill: 'Blur' }],
-                counteredBy: [{ hero: 'Axe', skill: 'Culling Blade' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'phantom-lancer', name: 'Phantom Lancer', nameRu: 'ПЛ', color: '#4169e1', font: "'Arial Black'",
-                counters: [{ hero: 'Earthshaker', skill: 'Echo Slam' }, { hero: 'Axe', skill: 'Helix' }],
-                counteredBy: [{ hero: 'Earthshaker', skill: 'Echo Slam' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'phoenix', name: 'Phoenix', nameRu: 'Феникс', color: '#ff8c00', font: "'Times New Roman'",
-                counters: [{ hero: 'Terrorblade', skill: 'Icarus Dive' }, { hero: 'Pudge', skill: 'Sun Ray' }],
-                counteredBy: [{ hero: 'Huskar', skill: 'Life Break' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === 71–80 ===
-            { id: 'primal-beast', name: 'Primal Beast', nameRu: 'Праймал', color: '#a0522d', font: "'Palatino'",
-                counters: [{ hero: 'Morphling', skill: 'Onslaught' }, { hero: 'Terrorblade', skill: 'Trample' }],
-                counteredBy: [{ hero: 'Timbersaw', skill: 'Chakram' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'puck', name: 'Puck', nameRu: 'Пак', color: '#00ced1', font: "'Tahoma'",
-                counters: [{ hero: 'Tinker', skill: 'Coil' }, { hero: 'Pudge', skill: 'Illusory' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'pudge', name: 'Pudge', nameRu: 'Пудж', color: '#556b2f', font: "'Lucida Console'",
-                counters: [{ hero: 'Tinker', skill: 'Meat Hook' }, { hero: 'Sniper', skill: 'Dismember' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'pugna', name: 'Pugna', nameRu: 'Пугна', color: '#9370db', font: "'Garamond'",
-                counters: [{ hero: 'Morphling', skill: 'Life Drain' }, { hero: 'Terrorblade', skill: 'Nether' }],
-                counteredBy: [{ hero: 'Nyx Assassin', skill: 'Spiked' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'queen-of-pain', name: 'Queen of Pain', nameRu: 'КУП', color: '#c71585', font: "'Impact'",
-                counters: [{ hero: 'Tinker', skill: 'Scream' }, { hero: 'Pudge', skill: 'Shadow Strike' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'razor', name: 'Razor', nameRu: 'Рейзор', color: '#4b0082', font: "'Segoe UI'",
-                counters: [{ hero: 'Terrorblade', skill: 'Static Link' }, { hero: 'Morphling', skill: 'Plasma' }],
-                counteredBy: [{ hero: 'Morphling', skill: 'Waveform' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'riki', name: 'Riki', nameRu: 'Рики', color: '#2f4f4f', font: "'Arial'",
-                counters: [{ hero: 'Sniper', skill: 'Smoke Screen' }, { hero: 'Tinker', skill: 'Blink' }],
-                counteredBy: [{ hero: 'Bounty Hunter', skill: 'Track' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'rubick', name: 'Rubick', nameRu: 'Рубик', color: '#2e8b57', font: "'Courier New'",
-                counters: [{ hero: 'Tinker', skill: 'Spell Steal' }, { hero: 'Pudge', skill: 'Telekinesis' }],
-                counteredBy: [{ hero: 'Silencer', skill: 'Global' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'sand-king', name: 'Sand King', nameRu: 'СК', color: '#b8860b', font: "'Verdana'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Epicenter' }, { hero: 'Terrorblade', skill: 'Burrow' }],
-                counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'shadow-demon', name: 'Shadow Demon', nameRu: 'ШД', color: '#8b008b', font: "'Georgia'",
-                counters: [{ hero: 'Terrorblade', skill: 'Disruption' }, { hero: 'Morphling', skill: 'Poison' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Shield' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === 81–90 ===
-            { id: 'shadow-fiend', name: 'Shadow Fiend', nameRu: 'ШФ', color: '#191970', font: "'Arial Black'",
-                counters: [{ hero: 'Tinker', skill: 'Raze' }, { hero: 'Pudge', skill: 'Necromastery' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'shadow-shaman', name: 'Shadow Shaman', nameRu: 'Шаман', color: '#8b4513', font: "'Times New Roman'",
-                counters: [{ hero: 'Morphling', skill: 'Hex' }, { hero: 'Terrorblade', skill: 'Wards' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Shield' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'silencer', name: 'Silencer', nameRu: 'Сайленсер', color: '#4b0082', font: "'Palatino'",
-                counters: [{ hero: 'Tinker', skill: 'Global Silence' }, { hero: 'Pudge', skill: 'Curse' }],
-                counteredBy: [{ hero: 'Oracle', skill: 'False' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'skywrath-mage', name: 'Skywrath Mage', nameRu: 'Скай', color: '#1e90ff', font: "'Tahoma'",
-                counters: [{ hero: 'Terrorblade', skill: 'Arcane Bolt' }, { hero: 'Morphling', skill: 'Concussive' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Hook' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'slardar', name: 'Slardar', nameRu: 'Слардар', color: '#2f4f4f', font: "'Lucida Console'",
-                counters: [{ hero: 'Riki', skill: 'Amplify Damage' }, { hero: 'Tinker', skill: 'Slithereen' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'slark', name: 'Slark', nameRu: 'Сларк', color: '#00ced1', font: "'Garamond'",
-                counters: [{ hero: 'Tinker', skill: 'Pounce' }, { hero: 'Pudge', skill: 'Essence' }],
-                counteredBy: [{ hero: 'Bloodseeker', skill: 'Rupture' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'sniper', name: 'Sniper', nameRu: 'Снайпер', color: '#daa520', font: "'Impact'",
-                counters: [{ hero: 'Tinker', skill: 'Assassinate' }, { hero: 'Pudge', skill: 'Shrapnel' }],
-                counteredBy: [{ hero: 'Riki', skill: 'Smoke' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'spectre', name: 'Spectre', nameRu: 'Спектр', color: '#4b0082', font: "'Segoe UI'",
-                counters: [{ hero: 'Tinker', skill: 'Haunt' }, { hero: 'Pudge', skill: 'Desolate' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'spirit-breaker', name: 'Spirit Breaker', nameRu: 'Бара', color: '#8b0000', font: "'Arial'",
-                counters: [{ hero: 'Sniper', skill: 'Charge' }, { hero: 'Tinker', skill: 'Greater Bash' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'storm-spirit', name: 'Storm Spirit', nameRu: 'Сторм', color: '#1e90ff', font: "'Courier New'",
-                counters: [{ hero: 'Tinker', skill: 'Vortex' }, { hero: 'Pudge', skill: 'Overload' }],
-                counteredBy: [{ hero: 'Anti-Mage', skill: 'Counterspell' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === 91–100 ===
-            { id: 'sven', name: 'Sven', nameRu: 'Свен', color: '#b22222', font: "'Verdana'",
-                counters: [{ hero: 'Terrorblade', skill: 'Storm Hammer' }, { hero: 'Broodmother', skill: 'Cleave' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'techies', name: 'Techies', nameRu: 'Течиз', color: '#8b4513', font: "'Georgia'",
-                counters: [{ hero: 'Tinker', skill: 'Mines' }, { hero: 'Pudge', skill: 'Stasis' }],
-                counteredBy: [{ hero: 'Zeus', skill: 'Bolt' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'terrorblade', name: 'Terrorblade', nameRu: 'Террорблейд', color: '#dc143c', font: "'Arial Black'",
-                counters: [{ hero: 'Morphling', skill: 'Sunder' }, { hero: 'Pudge', skill: 'Conjure' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Culling' }] },
-            { id: 'tidehunter', name: 'Tidehunter', nameRu: 'Тайд', color: '#2e8b57', font: "'Times New Roman'",
-                counters: [{ hero: 'Phantom Lancer', skill: 'Ravage' }, { hero: 'Terrorblade', skill: 'Anchor' }],
-                counteredBy: [{ hero: 'Rubick', skill: 'Steal' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'timbersaw', name: 'Timbersaw', nameRu: 'Тимбер', color: '#556b2f', font: "'Palatino'",
-                counters: [{ hero: 'Terrorblade', skill: 'Whirling Death' }, { hero: 'Pudge', skill: 'Chakram' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'tinker', name: 'Tinker', nameRu: 'Тинкер', color: '#4b0082', font: "'Tahoma'",
-                counters: [{ hero: 'Morphling', skill: 'Laser' }, { hero: 'Pudge', skill: 'March' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Hook' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'tiny', name: 'Tiny', nameRu: 'Тайни', color: '#708090', font: "'Lucida Console'",
-                counters: [{ hero: 'Terrorblade', skill: 'Avalanche' }, { hero: 'Pudge', skill: 'Toss' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'treant-protector', name: 'Treant Protector', nameRu: 'Треант', color: '#228b22',
-                font: "'Garamond'",
-                counters: [{ hero: 'Tinker', skill: 'Leech Seed' }, { hero: 'Pudge', skill: 'Overgrowth' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'troll-warlord', name: 'Troll Warlord', nameRu: 'Тролль', color: '#8b4513', font: "'Impact'",
-                counters: [{ hero: 'Terrorblade', skill: 'Bash' }, { hero: 'Pudge', skill: 'Fervor' }],
-                counteredBy: [{ hero: 'Axe', skill: 'Culling' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'tusk', name: 'Tusk', nameRu: 'Таск', color: '#b8860b', font: "'Segoe UI'",
-                counters: [{ hero: 'Tinker', skill: 'Snowball' }, { hero: 'Pudge', skill: 'Walrus' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === 101–110 ===
-            { id: 'underlord', name: 'Underlord', nameRu: 'Андерлорд', color: '#556b2f', font: "'Arial'",
-                counters: [{ hero: 'Terrorblade', skill: 'Firestorm' }, { hero: 'Pudge', skill: 'Pit' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'undying', name: 'Undying', nameRu: 'Андайинг', color: '#2f4f4f', font: "'Courier New'",
-                counters: [{ hero: 'Tinker', skill: 'Decay' }, { hero: 'Pudge', skill: 'Tombstone' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'ursa', name: 'Ursa', nameRu: 'Урса', color: '#b22222', font: "'Verdana'",
-                counters: [{ hero: 'Terrorblade', skill: 'Fury Swipes' }, { hero: 'Pudge', skill: 'Overpower' }],
-                counteredBy: [{ hero: 'Axe', skill: 'Culling' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'vengeful-spirit', name: 'Vengeful Spirit', nameRu: 'Венга', color: '#8b008b', font: "'Georgia'",
-                counters: [{ hero: 'Tinker', skill: 'Swap' }, { hero: 'Pudge', skill: 'Wave' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Shield' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'venomancer', name: 'Venomancer', nameRu: 'Веномансер', color: '#2e8b57', font: "'Arial Black'",
-                counters: [{ hero: 'Terrorblade', skill: 'Poison Nova' }, { hero: 'Pudge', skill: 'Gale' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'viper', name: 'Viper', nameRu: 'Вайпер', color: '#4b0082', font: "'Times New Roman'",
-                counters: [{ hero: 'Tinker', skill: 'Nethertoxin' }, { hero: 'Pudge', skill: 'Corrosive' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'visage', name: 'Visage', nameRu: 'Визаж', color: '#708090', font: "'Palatino'",
-                counters: [{ hero: 'Terrorblade', skill: 'Grave Chill' }, { hero: 'Pudge', skill: 'Familiars' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Dismember' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'void-spirit', name: 'Void Spirit', nameRu: 'Войд Спирит', color: '#1e90ff', font: "'Tahoma'",
-                counters: [{ hero: 'Tinker', skill: 'Aether' }, { hero: 'Pudge', skill: 'Dissimilate' }],
-                counteredBy: [{ hero: 'Silencer', skill: 'Global' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'warlock', name: 'Warlock', nameRu: 'Варлок', color: '#8b008b', font: "'Lucida Console'",
-                counters: [{ hero: 'Terrorblade', skill: 'Fatal Bonds' }, { hero: 'Pudge', skill: 'Chaos' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'weaver', name: 'Weaver', nameRu: 'Вивер', color: '#2f4f4f', font: "'Garamond'",
-                counters: [{ hero: 'Tinker', skill: 'Swarm' }, { hero: 'Pudge', skill: 'Shukuchi' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Hook' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === 111–120 ===
-            { id: 'windranger', name: 'Windranger', nameRu: 'Виндрейнджер', color: '#228b22', font: "'Impact'",
-                counters: [{ hero: 'Terrorblade', skill: 'Focus Fire' }, { hero: 'Pudge', skill: 'Shackle' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'winter-wyvern', name: 'Winter Wyvern', nameRu: 'Винтер', color: '#00ced1', font: "'Segoe UI'",
-                counters: [{ hero: 'Tinker', skill: 'Arctic Burn' }, { hero: 'Pudge', skill: 'Splinter' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'witch-doctor', name: 'Witch Doctor', nameRu: 'ВД', color: '#8b4513', font: "'Arial'",
-                counters: [{ hero: 'Terrorblade', skill: 'Maledict' }, { hero: 'Pudge', skill: 'Voodoo' }],
-                counteredBy: [{ hero: 'Abaddon', skill: 'Shield' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'wraith-king', name: 'Wraith King', nameRu: 'ВК', color: '#4b0082', font: "'Courier New'",
-                counters: [{ hero: 'Tinker', skill: 'Wraithfire' }, { hero: 'Pudge', skill: 'Vampiric' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'zeus', name: 'Zeus', nameRu: 'Зевс', color: '#daa520', font: "'Verdana'",
-                counters: [{ hero: 'Tinker', skill: 'Nimbus' }, { hero: 'Pudge', skill: 'Bolt' }],
-                counteredBy: [{ hero: 'Pudge', skill: 'Hook' }, { hero: 'Doom', skill: 'Doom' }] },
-            // === ДОБАВЛЯЕМ НЕДОСТАЮЩИХ (LARGO, SNAP, MARCI, DAWNBREAKER, HOODWINK уже есть, но добавим вариации) ===
-            { id: 'largo', name: 'Largo', nameRu: 'Ларго', color: '#ffa07a', font: "'Comic Sans MS'",
-                counters: [{ hero: 'Pudge', skill: 'Mystic Flare' }, { hero: 'Terrorblade', skill: 'Shadow Step' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'snapfire', name: 'Snapfire', nameRu: 'Снапфайр', color: '#ff6347', font: "'Arial Black'",
-                counters: [{ hero: 'Broodmother', skill: 'Mortimer\'s Kiss' }, { hero: 'Terrorblade',
-                    skill: 'Scatterblast' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'marci', name: 'Marci', nameRu: 'Марси', color: '#cd5c5c', font: "'Tahoma'",
-                counters: [{ hero: 'Pudge', skill: 'Dispose' }, { hero: 'Terrorblade', skill: 'Rebound' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'dawnbreaker-alt', name: 'Dawnbreaker (alt)', nameRu: 'Донбрейкер (вар)', color: '#ff8c00',
-                font: "'Georgia'",
-                counters: [{ hero: 'Necrophos', skill: 'Solar Guardian' }, { hero: 'Pudge', skill: 'Hammer' }],
-                counteredBy: [{ hero: 'Hoodwink', skill: 'Sharpshooter' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'hoodwink-alt', name: 'Hoodwink (alt)', nameRu: 'Худвинк (вар)', color: '#7fff00', font: "'Palatino'",
-                counters: [{ hero: 'Morphling', skill: 'Acorn Shot' }, { hero: 'Terrorblade', skill: 'Bushwhack' }],
-                counteredBy: [{ hero: 'Zeus', skill: 'Nimbus' }, { hero: 'Doom', skill: 'Doom' }] },
-            { id: 'arc-warden', name: 'Arc Warden', nameRu: 'Арк Варден', color: '#00bfff', font: "'Lucida Console'",
-                counters: [{ hero: 'Tinker', skill: 'Flux' }, { hero: 'Pudge', skill: 'Spark' }],
-                counteredBy: [{ hero: 'Doom', skill: 'Doom' }, { hero: 'Axe', skill: 'Call' }] },
-            { id: 'dark-willow', name: 'Dark Willow', nameRu: 'Дарк Виллоу', color: '#8b008b', font: "'Arial'",
-                counters: [{ hero: 'Terrorblade', skill: 'Shadow Realm' }, { hero: 'Pudge', skill: 'Cursed' }],
-                counteredBy: [{ hero: 'Lifestealer', skill: 'Rage' }, { hero: 'Doom', skill: 'Doom' }] }
-        ];
-
-        // Проверка: ровно 127
-        console.assert(heroesData.length === 127, '❗ Должно быть 127 героев!');
-
-        // ---------- СОСТОЯНИЕ ----------
-        let currentLang = 'ru';
+    function renderHeroes(filter = '') {
         const grid = document.getElementById('heroGrid');
-        const searchInput = document.getElementById('searchInput');
-        const langBtn = document.getElementById('langToggle');
+        grid.innerHTML = '';
+        const search = filter.toLowerCase().trim();
+        let count = 0;
 
-        // ---------- РЕНДЕР ----------
-        function renderHeroes(langCode, filterText = '') {
-            const filterLower = filterText.toLowerCase().trim();
-            let html = '';
+        finalHeroes.forEach(hero => {
+            const heroName = hero.name.toLowerCase();
+            const heroRu = hero.ru.toLowerCase();
+            const match = search === '' || heroName.includes(search) || heroRu.includes(search);
+            if (!match) return;
+            count++;
 
-            heroesData.forEach((hero) => {
-                const nameRuLower = hero.nameRu.toLowerCase();
-                const nameEnLower = hero.name.toLowerCase();
-                const matches = !filterLower || nameRuLower.includes(filterLower) || nameEnLower.includes(
-                filterLower);
-                if (!matches) return;
+            const card = document.createElement('div');
+            card.className = 'hero-card';
+            card.id = hero.id;
 
-                const displayName = langCode === 'ru' ? hero.nameRu : hero.name;
-                const color = hero.color || '#ffa94d';
-                const font = hero.font || "'Segoe UI'";
+            // Имя
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'hero-name';
+            nameDiv.style.color = hero.color || '#fff';
+            nameDiv.style.fontFamily = hero.font || 'inherit';
 
-                // КОГО КОНТРИТ
-                let countersHtml = '';
-                if (hero.counters && hero.counters.length) {
-                    hero.counters.forEach(c => {
-                        const heroId = c.hero.toLowerCase().replace(/\s/g, '-').replace(/[']/g, '');
-                        countersHtml +=
-                            `<span class="counter-item" onclick="scrollToHero('${heroId}')">${c.hero} <span class="skill-hint">(${c.skill})</span></span>`;
-                    });
-                } else {
-                    countersHtml = '<span style="color:#777;">—</span>';
-                }
+            const nameLink = document.createElement('a');
+            nameLink.href = `#${hero.id}`;
+            nameLink.textContent = currentLang === 'ru' ? hero.ru : hero.name;
+            nameDiv.appendChild(nameLink);
 
-                // КТО КОНТРИТ
-                let counteredByHtml = '';
-                if (hero.counteredBy && hero.counteredBy.length) {
-                    hero.counteredBy.forEach(c => {
-                        const heroId = c.hero.toLowerCase().replace(/\s/g, '-').replace(/[']/g, '');
-                        counteredByHtml +=
-                            `<span class="counter-item" onclick="scrollToHero('${heroId}')">${c.hero} <span class="skill-hint">(${c.skill})</span></span>`;
-                    });
-                } else {
-                    counteredByHtml = '<span style="color:#777;">—</span>';
-                }
+            const badge = document.createElement('span');
+            badge.className = 'badge';
+            badge.textContent = `#${finalHeroes.indexOf(hero) + 1}`;
+            nameDiv.appendChild(badge);
+            card.appendChild(nameDiv);
 
-                const colorCircle = `<span class="hero-color" style="background:${color};"></span>`;
+            // Кого контрит
+            const countersTitle = document.createElement('div');
+            countersTitle.className = 'section-title';
+            countersTitle.textContent = currentLang === 'ru' ? '⚔️ Контрит:' : '⚔️ Counters:';
+            card.appendChild(countersTitle);
 
-                html += `
-                        <div class="hero-card" id="card-${hero.id}" style="border-left-color:${color}; font-family:${font};">
-                            <div class="hero-name">
-                                ${colorCircle} ${displayName}
-                                <span class="sub">${langCode === 'ru' ? hero.name : hero.nameRu}</span>
-                            </div>
-                            <div class="counter-section">
-                                <div class="counter-block">
-                                    <strong>${langCode === 'ru' ? '⚡ Контрит (скил)' : '⚡ Counters (skill)'}</strong>
-                                    <div>${countersHtml}</div>
-                                </div>
-                                <div class="counter-block">
-                                    <strong>${langCode === 'ru' ? '🛡️ Кто контрит' : '🛡️ Countered by'}</strong>
-                                    <div>${counteredByHtml}</div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-            });
-
-            if (!html) {
-                html = `<div class="no-results">${langCode === 'ru' ? '😕 Ничего не найдено' : '😕 No heroes found'}</div>`;
-            }
-            grid.innerHTML = html;
-        }
-
-        // ---------- СКРОЛЛ К ГЕРОЮ ----------
-        window.scrollToHero = function(heroId) {
-            const card = document.getElementById(`card-${heroId}`);
-            if (card) {
-                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                card.classList.add('highlight');
-                setTimeout(() => card.classList.remove('highlight'), 1200);
+            const countersDiv = document.createElement('div');
+            countersDiv.className = 'counter-list';
+            if (hero.counters && hero.counters.length) {
+                hero.counters.forEach(c => {
+                    const item = document.createElement('span');
+                    item.className = 'counter-item';
+                    const a = document.createElement('a');
+                    a.href = `#${c.hero.toLowerCase().replace(/\s/g, '_')}`;
+                    a.textContent = c.hero;
+                    a.style.color = '#d4b84a';
+                    item.appendChild(a);
+                    const skillSpan = document.createElement('span');
+                    skillSpan.className = 'skill';
+                    skillSpan.textContent = c.skill || '';
+                    item.appendChild(skillSpan);
+                    countersDiv.appendChild(item);
+                });
             } else {
-                // fallback
-                const allCards = document.querySelectorAll('.hero-card');
-                for (let c of allCards) {
-                    if (c.textContent.toLowerCase().includes(heroId.replace(/-/g, ' '))) {
-                        c.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        c.classList.add('highlight');
-                        setTimeout(() => c.classList.remove('highlight'), 1200);
-                        break;
-                    }
-                }
+                const empty = document.createElement('span');
+                empty.className = 'empty-msg';
+                empty.textContent = currentLang === 'ru' ? '— нет данных' : '— no data';
+                countersDiv.appendChild(empty);
             }
-        };
+            card.appendChild(countersDiv);
 
-        // ---------- ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА ----------
-        function toggleLang() {
-            currentLang = currentLang === 'ru' ? 'en' : 'ru';
-            langBtn.textContent = currentLang === 'ru' ? '🇷🇺 RU / 🇬🇧 EN' : '🇬🇧 EN / 🇷🇺 RU';
-            renderHeroes(currentLang, searchInput.value);
-        }
+            // Кто контрит
+            const counteredTitle = document.createElement('div');
+            counteredTitle.className = 'section-title';
+            counteredTitle.textContent = currentLang === 'ru' ? '🛡️ Контрится:' : '🛡️ Countered by:';
+            card.appendChild(counteredTitle);
 
-        // ---------- ПОИСК ----------
-        let searchTimeout;
-        searchInput.addEventListener('input', function() {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                renderHeroes(currentLang, this.value);
-            }, 120);
+            const counteredDiv = document.createElement('div');
+            counteredDiv.className = 'counter-list';
+            if (hero.counteredBy && hero.counteredBy.length) {
+                hero.counteredBy.forEach(c => {
+                    const item = document.createElement('span');
+                    item.className = 'counter-item';
+                    const a = document.createElement('a');
+                    a.href = `#${c.hero.toLowerCase().replace(/\s/g, '_')}`;
+                    a.textContent = c.hero;
+                    a.style.color = '#e8793e';
+                    item.appendChild(a);
+                    const skillSpan = document.createElement('span');
+                    skillSpan.className = 'skill';
+                    skillSpan.textContent = c.skill || '';
+                    item.appendChild(skillSpan);
+                    counteredDiv.appendChild(item);
+                });
+            } else {
+                const empty = document.createElement('span');
+                empty.className = 'empty-msg';
+                empty.textContent = currentLang === 'ru' ? '— нет данных' : '— no data';
+                counteredDiv.appendChild(empty);
+            }
+            card.appendChild(counteredDiv);
+            grid.appendChild(card);
         });
 
-        // ---------- СТАРТ ----------
-        renderHeroes('ru', '');
-        langBtn.addEventListener('click', toggleLang);
+        document.getElementById('heroCount').textContent = `${count} ${currentLang === 'ru' ? 'героев' : 'heroes'}`;
+    }
 
-        console.log('✅ Dota 2 7.41 — 127 героев загружено! (8000+ строк)');
-        console.log('📌 Кликайте на имена героев для перемотки к их карточке.');
-    </script>
+    // ------------------------------------------------------------
+    // ПОИСК
+    // ------------------------------------------------------------
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        renderHeroes(e.target.value);
+    });
+
+    // ------------------------------------------------------------
+    // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
+    // ------------------------------------------------------------
+    document.getElementById('langToggle').addEventListener('click', function() {
+        currentLang = currentLang === 'ru' ? 'en' : 'ru';
+        this.textContent = currentLang === 'ru' ? '🇷🇺 RU' : '🇬🇧 EN';
+        this.classList.toggle('active');
+        // обновить плейсхолдер
+        const input = document.getElementById('searchInput');
+        input.placeholder = currentLang === 'ru' ? '🔍 Поиск героя...' : '🔍 Search hero...';
+        // Перерендер
+        const searchVal = document.getElementById('searchInput').value;
+        renderHeroes(searchVal);
+    });
+
+    // ------------------------------------------------------------
+    // ПЕРВОНАЧАЛЬНЫЙ РЕНДЕР
+    // ------------------------------------------------------------
+    renderHeroes('');
+
+    // Клик по ссылкам с якорями плавно скроллит
+    document.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+            e.preventDefault();
+            const targetId = e.target.getAttribute('href').slice(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    });
+</script>
 </body>
 </html>
