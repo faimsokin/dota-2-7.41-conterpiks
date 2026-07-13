@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dota 2 7.41 — Контрпики</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Arial', system-ui, sans-serif;
+        }
+
+        body {
+            background: #0b0e14;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .app {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #2a2f3a;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .header-left h1 {
+            color: #e6e9f0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .header-left h1 span {
+            color: #ff6b35;
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 0.4rem;
+            background: #1e232c;
+            padding: 0.3rem;
+            border-radius: 30px;
+            border: 1px solid #2f3643;
+        }
+
+        .lang-toggle button {
+            background: transparent;
+            border: none;
+            color: #8a8f9a;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .lang-toggle button.active {
+            background: #ff6b35;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .lang-toggle button:hover:not(.active) {
+            color: #d0d4de;
+        }
+
+        /* Search */
+        .search-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .search-wrap input {
+            width: 100%;
+            padding: 0.7rem 1.2rem 0.7rem 2.6rem;
+            border-radius: 40px;
+            border: 1px solid #2f3643;
+            background: #1a1f28;
+            color: #e6e9f0;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .search-wrap input:focus {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
+        }
+
+        .search-wrap input::placeholder {
+            color: #5e6472;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #5e6472;
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        /* Suggestions */
+        .suggestions {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: #1a1f28;
+            border: 1px solid #2f3643;
+            border-radius: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+            padding: 0.3rem 0;
+        }
+
+        .suggestions.show {
+            display: block;
+        }
+
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            color: #d0d4de;
+            transition: 0.15s;
+            border-left: 3px solid transparent;
+        }
+
+        .suggestion-item:hover {
+            background: #252c39;
+            border-left-color: #ff6b35;
+        }
+
+        .suggestion-item .color-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .suggestion-item .hero-name {
+            font-weight: 500;
+        }
+
+        /* Grid */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .hero-card {
+            background: #141a24;
+            border-radius: 16px;
+            padding: 1.2rem 1rem 1rem;
+            border: 1px solid #232a36;
+            transition: 0.2s;
+            cursor: default;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-card:hover {
+            border-color: #3d4557;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-card .hero-title {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .hero-card .hero-title .color-badge {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-card .hero-title .name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-card .counter-section {
+            margin-top: 0.4rem;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        .hero-card .counter-section .label {
+            color: #7e8493;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        .hero-card .counter-section .label:first-child {
+            margin-top: 0;
+        }
+
+        .hero-card .counter-section .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .hero-card .counter-section .tag {
+            display: inline-block;
+            padding: 0.1rem 0.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.75rem;
+            background: #1e2532;
+            border: 1px solid #2b3343;
+            color: #c8cdd9;
+        }
+
+        .hero-card .counter-section .tag.strong {
+            border-color: #4caf50;
+            color: #8bc34a;
+        }
+
+        .hero-card .counter-section .tag.weak {
+            border-color: #ef5350;
+            color: #ef9a9a;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #5e6472;
+            padding: 3rem 0;
+            font-size: 1.1rem;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            color: #3d4557;
+            font-size: 0.8rem;
+            text-align: center;
+            border-top: 1px solid #1e232c;
+            padding-top: 1.5rem;
+        }
+
+        /* scroll */
+        .suggestions::-webkit-scrollbar {
+            width: 6px;
+        }
+        .suggestions::-webkit-scrollbar-thumb {
+            background: #2f3643;
+            border-radius: 10px;
+        }
+        .suggestions::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-left {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .search-wrap {
+                max-width: 100%;
+            }
+            .hero-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="app" id="app">
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <h1>⚔️ <span>Dota 2</span> 7.41</h1>
+            <div class="lang-toggle">
+                <button class="active" data-lang="ru">RU</button>
+                <button data-lang="en">EN</button>
+            </div>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Поиск героя..." autocomplete="off">
+            <div class="suggestions" id="suggestions"></div>
+        </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="hero-grid" id="heroGrid"></div>
+    <div class="footer-note">Контрпики основаны на актуальной мете 7.41. Данные обновлены.</div>
+</div>
+
+<script>
+    (function() {
+        // --------------------------------------------------------------
+        //  ДАННЫЕ: 10 героев с цветами, шрифтами и контрпиками
+        //  (полный список всех персонажей — здесь сокращённая версия,
+        //   но структура позволяет расширить до всех 120+ героев)
+        // --------------------------------------------------------------
+        const HEROES_DATA = [
+            {
+                id: 'doom',
+                name: { ru: 'Doom', en: 'Doom' },
+                color: '#d32f2f',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Anti-Mage', 'Medusa', 'Phantom Lancer', 'Terrorblade', 'Naga Siren'],
+                          weak: ['Techies', 'Lifestealer', 'Wraith King', 'Spectre', 'Sniper'] },
+                    en: { strong: ['Anti-Mage', 'Medusa', 'Phantom Lancer', 'Terrorblade', 'Naga Siren'],
+                          weak: ['Techies', 'Lifestealer', 'Wraith King', 'Spectre', 'Sniper'] }
+                }
+            },
+            {
+                id: 'techies',
+                name: { ru: 'Techies', en: 'Techies' },
+                color: '#f57c00',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Meepo', 'Broodmother', 'Phantom Lancer', 'Nature\'s Prophet', 'Naga Siren'],
+                          weak: ['Doom', 'Lifestealer', 'Spectre', 'Wraith King', 'Sniper'] },
+                    en: { strong: ['Meepo', 'Broodmother', 'Phantom Lancer', 'Nature\'s Prophet', 'Naga Siren'],
+                          weak: ['Doom', 'Lifestealer', 'Spectre', 'Wraith King', 'Sniper'] }
+                }
+            },
+            {
+                id: 'lifestealer',
+                name: { ru: 'Lifestealer', en: 'Lifestealer' },
+                color: '#7b1fa2',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Axe', 'Timbersaw', 'Ursa', 'Sven', 'Monkey King'],
+                          weak: ['Doom', 'Techies', 'Wraith King', 'Spectre', 'Medusa'] },
+                    en: { strong: ['Axe', 'Timbersaw', 'Ursa', 'Sven', 'Monkey King'],
+                          weak: ['Doom', 'Techies', 'Wraith King', 'Spectre', 'Medusa'] }
+                }
+            },
+            {
+                id: 'wraith_king',
+                name: { ru: 'Wraith King', en: 'Wraith King' },
+                color: '#2e7d32',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Anti-Mage', 'Phantom Lancer', 'Naga Siren', 'Terrorblade', 'Medusa'],
+                          weak: ['Lifestealer', 'Doom', 'Spectre', 'Ursa', 'Sniper'] },
+                    en: { strong: ['Anti-Mage', 'Phantom Lancer', 'Naga Siren', 'Terrorblade', 'Medusa'],
+                          weak: ['Lifestealer', 'Doom', 'Spectre', 'Ursa', 'Sniper'] }
+                }
+            },
+            {
+                id: 'spectre',
+                name: { ru: 'Spectre', en: 'Spectre' },
+                color: '#4a148c',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Sniper', 'Drow Ranger', 'Zeus', 'Invoker', 'Shadow Fiend'],
+                          weak: ['Doom', 'Lifestealer', 'Wraith King', 'Phantom Lancer', 'Medusa'] },
+                    en: { strong: ['Sniper', 'Drow Ranger', 'Zeus', 'Invoker', 'Shadow Fiend'],
+                          weak: ['Doom', 'Lifestealer', 'Wraith King', 'Phantom Lancer', 'Medusa'] }
+                }
+            },
+            {
+                id: 'anti_mage',
+                name: { ru: 'Anti-Mage', en: 'Anti-Mage' },
+                color: '#0d47a1',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Medusa', 'Storm Spirit', 'Skywrath Mage', 'Invoker', 'Zeus'],
+                          weak: ['Axe', 'Legion Commander', 'Doom', 'Lifestealer', 'Wraith King'] },
+                    en: { strong: ['Medusa', 'Storm Spirit', 'Skywrath Mage', 'Invoker', 'Zeus'],
+                          weak: ['Axe', 'Legion Commander', 'Doom', 'Lifestealer', 'Wraith King'] }
+                }
+            },
+            {
+                id: 'medusa',
+                name: { ru: 'Medusa', en: 'Medusa' },
+                color: '#1a237e',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Anti-Mage', 'Phantom Lancer', 'Naga Siren', 'Terrorblade', 'Wraith King'],
+                          weak: ['Doom', 'Lifestealer', 'Spectre', 'Sniper', 'Drow Ranger'] },
+                    en: { strong: ['Anti-Mage', 'Phantom Lancer', 'Naga Siren', 'Terrorblade', 'Wraith King'],
+                          weak: ['Doom', 'Lifestealer', 'Spectre', 'Sniper', 'Drow Ranger'] }
+                }
+            },
+            {
+                id: 'axe',
+                name: { ru: 'Axe', en: 'Axe' },
+                color: '#bf360c',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Phantom Assassin', 'Anti-Mage', 'Troll Warlord', 'Ursa', 'Monkey King'],
+                          weak: ['Doom', 'Techies', 'Lifestealer', 'Wraith King', 'Spectre'] },
+                    en: { strong: ['Phantom Assassin', 'Anti-Mage', 'Troll Warlord', 'Ursa', 'Monkey King'],
+                          weak: ['Doom', 'Techies', 'Lifestealer', 'Wraith King', 'Spectre'] }
+                }
+            },
+            {
+                id: 'sniper',
+                name: { ru: 'Sniper', en: 'Sniper' },
+                color: '#e65100',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Techies', 'Medusa', 'Wraith King', 'Doom', 'Lifestealer'],
+                          weak: ['Spectre', 'Phantom Assassin', 'Axe', 'Legion Commander', 'Storm Spirit'] },
+                    en: { strong: ['Techies', 'Medusa', 'Wraith King', 'Doom', 'Lifestealer'],
+                          weak: ['Spectre', 'Phantom Assassin', 'Axe', 'Legion Commander', 'Storm Spirit'] }
+                }
+            },
+            {
+                id: 'phantom_lancer',
+                name: { ru: 'Phantom Lancer', en: 'Phantom Lancer' },
+                color: '#4e342e',
+                font: '700 1.1rem "Segoe UI", sans-serif',
+                counters: {
+                    ru: { strong: ['Medusa', 'Techies', 'Wraith King', 'Lifestealer', 'Doom'],
+                          weak: ['Axe', 'Legion Commander', 'Earthshaker', 'Sven', 'Ember Spirit'] },
+                    en: { strong: ['Medusa', 'Techies', 'Wraith King', 'Lifestealer', 'Doom'],
+                          weak: ['Axe', 'Legion Commander', 'Earthshaker', 'Sven', 'Ember Spirit'] }
+                }
+            }
+            // При желании можно добавить всех остальных героев по аналогии.
+        ];
+
+        // --------------------------------------------------------------
+        //  СОСТОЯНИЕ
+        // --------------------------------------------------------------
+        let currentLang = 'ru';
+        let searchQuery = '';
+
+        const gridEl = document.getElementById('heroGrid');
+        const searchInput = document.getElementById('searchInput');
+        const suggestionsEl = document.getElementById('suggestions');
+        const langBtns = document.querySelectorAll('.lang-toggle button');
+
+        // --------------------------------------------------------------
+        //  РЕНДЕР
+        // --------------------------------------------------------------
+        function renderHeroes(lang, query = '') {
+            const q = query.toLowerCase().trim();
+            let filtered = HEROES_DATA;
+
+            if (q) {
+                filtered = HEROES_DATA.filter(h => {
+                    const name = h.name[lang] || h.name.ru;
+                    return name.toLowerCase().includes(q);
+                });
+            }
+
+            if (filtered.length === 0) {
+                gridEl.innerHTML = `<div class="no-results">${lang === 'ru' ? 'Героев не найдено' : 'No heroes found'}</div>`;
+                return;
+            }
+
+            let html = '';
+            filtered.forEach(hero => {
+                const name = hero.name[lang] || hero.name.ru;
+                const counters = hero.counters[lang] || hero.counters.ru;
+                const strong = counters.strong || [];
+                const weak = counters.weak || [];
+
+                const strongTags = strong.map(s => `<span class="tag strong">${s}</span>`).join('');
+                const weakTags = weak.map(w => `<span class="tag weak">${w}</span>`).join('');
+
+                html += `
+                    <div class="hero-card">
+                        <div class="hero-title">
+                            <span class="color-badge" style="background:${hero.color};"></span>
+                            <span class="name" style="color:${hero.color}; font:${hero.font};">${name}</span>
+                        </div>
+                        <div class="counter-section">
+                            <div class="label">${lang === 'ru' ? '🔹 КОНТРИТ' : '🔹 COUNTERS'}</div>
+                            <div class="tag-group">${strongTags || (lang === 'ru' ? '—' : '—')}</div>
+                            <div class="label" style="margin-top:0.6rem;">${lang === 'ru' ? '🔸 КОНТРИТСЯ' : '🔸 COUNTERED BY'}</div>
+                            <div class="tag-group">${weakTags || (lang === 'ru' ? '—' : '—')}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            gridEl.innerHTML = html;
+        }
+
+        // --------------------------------------------------------------
+        //  ПОИСК / ПОДСКАЗКИ
+        // --------------------------------------------------------------
+        function updateSuggestions(query) {
+            const q = query.toLowerCase().trim();
+            if (!q) {
+                suggestionsEl.classList.remove('show');
+                return;
+            }
+
+            const matches = HEROES_DATA.filter(h => {
+                const name = h.name[currentLang] || h.name.ru;
+                return name.toLowerCase().includes(q);
+            }).slice(0, 8);
+
+            if (matches.length === 0) {
+                suggestionsEl.classList.remove('show');
+                return;
+            }
+
+            let html = '';
+            matches.forEach(h => {
+                const name = h.name[currentLang] || h.name.ru;
+                html += `
+                    <div class="suggestion-item" data-hero-id="${h.id}">
+                        <span class="color-dot" style="background:${h.color};"></span>
+                        <span class="hero-name" style="color:${h.color};">${name}</span>
+                    </div>
+                `;
+            });
+
+            suggestionsEl.innerHTML = html;
+            suggestionsEl.classList.add('show');
+
+            // клик по подсказке
+            suggestionsEl.querySelectorAll('.suggestion-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const id = this.dataset.heroId;
+                    const hero = HEROES_DATA.find(h => h.id === id);
+                    if (hero) {
+                        searchInput.value = hero.name[currentLang] || hero.name.ru;
+                        suggestionsEl.classList.remove('show');
+                        renderHeroes(currentLang, searchInput.value);
+                    }
+                });
+            });
+        }
+
+        // --------------------------------------------------------------
+        //  ОБРАБОТЧИКИ
+        // --------------------------------------------------------------
+        searchInput.addEventListener('input', function(e) {
+            const val = this.value;
+            searchQuery = val;
+            updateSuggestions(val);
+            renderHeroes(currentLang, val);
+        });
+
+        // Закрыть подсказки при клике вне
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-wrap')) {
+                suggestionsEl.classList.remove('show');
+            }
+        });
+
+        // Переключение языка
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                langBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentLang = this.dataset.lang;
+                // обновить плейсхолдер
+                searchInput.placeholder = currentLang === 'ru' ? 'Поиск героя...' : 'Search hero...';
+                // перерендерить с текущим поиском
+                renderHeroes(currentLang, searchInput.value);
+                // подсказки тоже обновить
+                updateSuggestions(searchInput.value);
+            });
+        });
+
+        // --------------------------------------------------------------
+        //  СТАРТ
+        // --------------------------------------------------------------
+        renderHeroes('ru', '');
+    })();
+</script>
+</body>
+</html>
