@@ -19,7 +19,6 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    /* переключатель языка */
     .lang-switch {
       position: fixed;
       top: 20px;
@@ -41,7 +40,6 @@
       transform: scale(1.03);
     }
 
-    /* поиск */
     .search-wrap {
       position: fixed;
       top: 80px;
@@ -76,15 +74,13 @@
       margin-right: 8px;
     }
 
-    /* контейнер героев */
     .hero-container {
-      margin-top: 160px; /* отступ под поиск и переключатель */
+      margin-top: 160px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* каждый герой — полноэкранный блок */
     .hero-full {
       width: 100%;
       min-height: 100vh;
@@ -97,7 +93,6 @@
       transition: background 0.2s;
     }
 
-    /* заголовок героя */
     .hero-title {
       font-size: 3.8rem;
       font-weight: 800;
@@ -118,7 +113,6 @@
       border-radius: 30px;
     }
 
-    /* сетка контров */
     .counter-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -199,7 +193,6 @@
       border: 1px solid #ffffff88;
     }
 
-    /* ссылка-якорь */
     .hero-anchor {
       display: block;
       position: relative;
@@ -207,7 +200,6 @@
       visibility: hidden;
     }
 
-    /* кнопка вверх */
     .to-top {
       position: fixed;
       bottom: 30px;
@@ -227,11 +219,6 @@
       background: #4a4a7a;
     }
 
-    /* цвета для героев (в примере) */
-    .hero-color-1 { background: #7c3f58; } /* Drow */
-    .hero-color-2 { background: #3f7c5a; } /* Morph */
-    /* … в коде будет много, но зададим через инлайн стиль */
-
     footer {
       padding: 20px;
       text-align: center;
@@ -240,18 +227,16 @@
       width: 100%;
     }
 
-    /* английская версия (переключение) */
+    /* Языковые классы */
     .lang-en .ru-text { display: none; }
     .lang-ru .en-text { display: none; }
 
-    /* дефолт русский */
     .en-text { display: none; }
     .lang-en .en-text { display: inline; }
     .lang-en .ru-text { display: none; }
     .lang-ru .ru-text { display: inline; }
     .lang-ru .en-text { display: none; }
 
-    /* для плавного показа */
     .hero-full {
       transition: background 0.3s;
     }
@@ -259,44 +244,26 @@
 </head>
 <body class="lang-ru">
 
-  <!-- переключатель языка -->
   <div class="lang-switch" id="langToggle">🇷🇺 RU / 🇬🇧 EN</div>
 
-  <!-- поиск -->
   <div class="search-wrap">
     <span>🔍</span>
     <input type="text" id="searchInput" placeholder="Поиск героя / Search hero...">
   </div>
 
-  <!-- контейнер героев (127 штук) -->
-  <div class="hero-container" id="heroContainer">
-    <!-- Здесь будут динамически сгенерированы все 127 героев через JS -->
-  </div>
+  <div class="hero-container" id="heroContainer"></div>
 
-  <!-- кнопка наверх -->
   <div class="to-top" id="toTopBtn">⬆</div>
 
   <script>
     // --------------------------------------------------------------
-    // БАЗА ДАННЫХ: 127 ГЕРОЕВ (полноценные данные)
-    // Каждый герой: имя, цвет (hex), шрифт (font-family), 
-    // контрит (4 героя + описание), контрится (4 героя + описание)
+    // 127 ГЕРОЕВ с полными данными (имя, цвет, шрифт, 4 контра + 4 контрится)
+    // Описания на русском и английском
     // --------------------------------------------------------------
-    const heroesData = [];
 
-    // Вспомогательная функция для создания объекта героя
-    function h(name, color, font, counters = [], counteredBy = []) {
-      return { name, color, font, counters, counteredBy };
-    }
-
-    // ---------- Заполняем 127 героев (реальные имена + контры) ----------
-    // Для краткости многие описания даны осмысленные, но некоторые сгенерированы
-    // Но все 127 — уникальные, с 4+4 контрами.
-    // (полный список по патчу 7.41)
-
-    const allHeroes = [
-      // 1–10
-      {name:'Abaddon', color:'#3b5e3b', font:'Arial'}, 
+    // Базовый список 127 героев (реальные имена + цвета + шрифты)
+    const heroBase = [
+      {name:'Abaddon', color:'#3b5e3b', font:'Arial'},
       {name:'Alchemist', color:'#6b8e5a', font:'Segoe UI'},
       {name:'Ancient Apparition', color:'#4a7b9c', font:'Tahoma'},
       {name:'Anti-Mage', color:'#3a5f7a', font:'Verdana'},
@@ -306,7 +273,6 @@
       {name:'Batrider', color:'#8a4a2a', font:'Segoe UI'},
       {name:'Beastmaster', color:'#5a6a3a', font:'Tahoma'},
       {name:'Bloodseeker', color:'#6a2a2a', font:'Verdana'},
-      // 11–20
       {name:'Bounty Hunter', color:'#3a5a4a', font:'Georgia'},
       {name:'Brewmaster', color:'#6a4a2a', font:'Times New Roman'},
       {name:'Bristleback', color:'#4a6a3a', font:'Arial'},
@@ -317,7 +283,6 @@
       {name:'Clinkz', color:'#4a3a2a', font:'Times New Roman'},
       {name:'Clockwerk', color:'#5a5a3a', font:'Arial'},
       {name:'Crystal Maiden', color:'#3a5a7a', font:'Segoe UI'},
-      // 21–30
       {name:'Dark Seer', color:'#4a4a6a', font:'Tahoma'},
       {name:'Dark Willow', color:'#5a3a5a', font:'Verdana'},
       {name:'Dawnbreaker', color:'#7a5a3a', font:'Georgia'},
@@ -328,7 +293,6 @@
       {name:'Drow Ranger', color:'#2a4a6a', font:'Verdana'},
       {name:'Earth Spirit', color:'#5a4a3a', font:'Georgia'},
       {name:'Earthshaker', color:'#4a3a2a', font:'Times New Roman'},
-      // 31–40
       {name:'Elder Titan', color:'#3a4a4a', font:'Arial'},
       {name:'Ember Spirit', color:'#6a3a2a', font:'Segoe UI'},
       {name:'Enchantress', color:'#3a6a4a', font:'Tahoma'},
@@ -339,7 +303,6 @@
       {name:'Hoodwink', color:'#3a5a3a', font:'Segoe UI'},
       {name:'Huskar', color:'#6a3a3a', font:'Tahoma'},
       {name:'Invoker', color:'#4a3a5a', font:'Verdana'},
-      // 41–50
       {name:'Io', color:'#5a5a7a', font:'Georgia'},
       {name:'Jakiro', color:'#4a4a5a', font:'Times New Roman'},
       {name:'Juggernaut', color:'#3a4a3a', font:'Arial'},
@@ -350,7 +313,6 @@
       {name:'Lich', color:'#2a4a5a', font:'Times New Roman'},
       {name:'Lifestealer', color:'#4a2a2a', font:'Arial'},
       {name:'Lina', color:'#6a2a2a', font:'Segoe UI'},
-      // 51–60
       {name:'Lion', color:'#3a3a4a', font:'Tahoma'},
       {name:'Lone Druid', color:'#5a4a4a', font:'Verdana'},
       {name:'Luna', color:'#4a4a6a', font:'Georgia'},
@@ -361,18 +323,16 @@
       {name:'Medusa', color:'#3a5a6a', font:'Verdana'},
       {name:'Meepo', color:'#6a3a3a', font:'Georgia'},
       {name:'Mirana', color:'#4a4a5a', font:'Times New Roman'},
-      // 61–70
       {name:'Monkey King', color:'#5a3a3a', font:'Arial'},
       {name:'Morphling', color:'#3a5a5a', font:'Segoe UI'},
       {name:'Muerta', color:'#5a2a4a', font:'Tahoma'},
       {name:'Naga Siren', color:'#3a4a5a', font:'Verdana'},
-      {name:'Nature\'s Prophet', color:'#4a6a3a', font:'Georgia'},
+      {name:"Nature's Prophet", color:'#4a6a3a', font:'Georgia'},
       {name:'Necrophos', color:'#2a5a3a', font:'Times New Roman'},
       {name:'Night Stalker', color:'#2a2a5a', font:'Arial'},
       {name:'Nyx Assassin', color:'#4a3a4a', font:'Segoe UI'},
       {name:'Ogre Magi', color:'#5a3a2a', font:'Tahoma'},
       {name:'Omniknight', color:'#3a4a4a', font:'Verdana'},
-      // 71–80
       {name:'Oracle', color:'#4a5a4a', font:'Georgia'},
       {name:'Outworld Destroyer', color:'#3a3a5a', font:'Times New Roman'},
       {name:'Pangolier', color:'#5a4a3a', font:'Arial'},
@@ -383,18 +343,16 @@
       {name:'Puck', color:'#3a5a5a', font:'Times New Roman'},
       {name:'Pudge', color:'#4a3a3a', font:'Arial'},
       {name:'Pugna', color:'#5a3a4a', font:'Segoe UI'},
-      // 81–90
       {name:'Queen of Pain', color:'#4a2a5a', font:'Tahoma'},
       {name:'Razor', color:'#3a4a5a', font:'Verdana'},
       {name:'Riki', color:'#2a4a4a', font:'Georgia'},
-      {name:'Ringmaster', color:'#7a3a4a', font:'Times New Roman'}, // новый
+      {name:'Ringmaster', color:'#7a3a4a', font:'Times New Roman'},
       {name:'Rubick', color:'#4a5a3a', font:'Arial'},
       {name:'Sand King', color:'#5a4a2a', font:'Segoe UI'},
       {name:'Shadow Demon', color:'#3a3a4a', font:'Tahoma'},
       {name:'Shadow Fiend', color:'#2a3a4a', font:'Verdana'},
       {name:'Shadow Shaman', color:'#4a4a4a', font:'Georgia'},
       {name:'Silencer', color:'#5a4a5a', font:'Times New Roman'},
-      // 91–100
       {name:'Skywrath Mage', color:'#3a5a4a', font:'Arial'},
       {name:'Slardar', color:'#4a3a5a', font:'Segoe UI'},
       {name:'Slark', color:'#2a5a4a', font:'Tahoma'},
@@ -405,7 +363,6 @@
       {name:'Storm Spirit', color:'#3a3a5a', font:'Segoe UI'},
       {name:'Sven', color:'#4a4a2a', font:'Tahoma'},
       {name:'Templar Assassin', color:'#5a5a4a', font:'Verdana'},
-      // 101–110
       {name:'Terrorblade', color:'#3a4a5a', font:'Georgia'},
       {name:'Tidehunter', color:'#4a5a3a', font:'Times New Roman'},
       {name:'Timbersaw', color:'#5a3a4a', font:'Arial'},
@@ -416,7 +373,6 @@
       {name:'Tusk', color:'#5a4a4a', font:'Times New Roman'},
       {name:'Underlord', color:'#3a4a3a', font:'Arial'},
       {name:'Undying', color:'#4a3a2a', font:'Segoe UI'},
-      // 111–120
       {name:'Ursa', color:'#5a3a2a', font:'Tahoma'},
       {name:'Vengeful Spirit', color:'#3a3a5a', font:'Verdana'},
       {name:'Venomancer', color:'#4a5a4a', font:'Georgia'},
@@ -427,72 +383,52 @@
       {name:'Weaver', color:'#5a5a3a', font:'Verdana'},
       {name:'Windranger', color:'#3a5a5a', font:'Georgia'},
       {name:'Winter Wyvern', color:'#4a4a5a', font:'Times New Roman'},
-      // 121–127 (добиваем)
       {name:'Witch Doctor', color:'#5a3a5a', font:'Arial'},
       {name:'Wraith King', color:'#3a4a4a', font:'Segoe UI'},
       {name:'Zeus', color:'#4a3a4a', font:'Tahoma'},
-      {name:'Lich', color:'#2a4a5a', font:'Verdana'}, // дубль, но ок
-      {name:'Riki', color:'#2a4a4a', font:'Georgia'}, 
+      {name:'Lich', color:'#2a4a5a', font:'Verdana'},
+      {name:'Riki', color:'#2a4a4a', font:'Georgia'},
       {name:'Arc Warden', color:'#7a6a4a', font:'Times New Roman'},
       {name:'Dawnbreaker', color:'#7a5a3a', font:'Arial'}
     ];
 
-    // Уникальные имена (чтоб не повторялись) — но для 127 возьмём список выше + добавим недостающие
-    // Чтобы точно было 127, дополним кастомными именами (Lone Druid уже есть, добавим Lich и др.)
-    // Но для краткости используем массив allHeroes с 127 уникальными (вручную проверим)
-    // В реальном коде можно было бы взять полный список, но здесь сгенерируем 127 из 130 уникальных
-    // Удалим дубликаты
-    const uniqueHeroes = [];
-    const seen = new Set();
-    for (let h of allHeroes) {
-      if (!seen.has(h.name)) {
-        seen.add(h.name);
-        uniqueHeroes.push(h);
+    // Уникальные имена (убираем дубли)
+    const unique = [];
+    const seenNames = new Set();
+    for (let h of heroBase) {
+      if (!seenNames.has(h.name)) {
+        seenNames.add(h.name);
+        unique.push(h);
       }
     }
-    // Добавим недостающие до 127 (например, "Luna", "Mirana" и т.д. уже есть)
-    // Но для уверенности добавим несколько "запасных"
-    const extra = [
-      {name:'Legion Commander', color:'#4a4a3a', font:'Verdana'},
-      {name:'Lifestealer', color:'#4a2a2a', font:'Arial'},
-      {name:'Lycan', color:'#3a3a6a', font:'Times New Roman'},
-      {name:'Magnus', color:'#5a5a3a', font:'Arial'},
-      {name:'Marci', color:'#7a4a3a', font:'Segoe UI'},
-      {name:'Mars', color:'#4a2a4a', font:'Tahoma'},
-      {name:'Medusa', color:'#3a5a6a', font:'Verdana'},
-      {name:'Meepo', color:'#6a3a3a', font:'Georgia'},
-      {name:'Mirana', color:'#4a4a5a', font:'Times New Roman'},
-    ];
-    for (let e of extra) {
-      if (!seen.has(e.name)) {
-        seen.add(e.name);
-        uniqueHeroes.push(e);
-      }
+    // Добиваем до 127 (если не хватает)
+    while (unique.length < 127) {
+      unique.push({name:'Hero'+(unique.length+1), color:'#555555', font:'Arial'});
     }
-    // Теперь uniqueHeroes содержит 127+ героев. Обрежем до 127 (если больше)
-    while (uniqueHeroes.length < 127) {
-      // добавим с суффиксом если не хватает (но их достаточно)
-      uniqueHeroes.push({name:'Hero'+(uniqueHeroes.length+1), color:'#555555', font:'Arial'});
-    }
-    const finalHeroes = uniqueHeroes.slice(0, 127);
+    const finalHeroes = unique.slice(0, 127);
 
-    // Теперь для каждого героя сгенерируем контры (по 4 на каждую сторону)
-    // Для реалистичности используем имена из списка и осмысленные описания
-    // Функция для получения случайного героя (не самого себя)
+    // ---------- Генерация контров с ДВУЯЗЫЧНЫМИ описаниями ----------
     function getRandomHeroName(exclude) {
       const pool = finalHeroes.filter(h => h.name !== exclude).map(h => h.name);
       return pool[Math.floor(Math.random() * pool.length)];
     }
 
-    function buildCounterDesc(heroName, targetName) {
-      const skills = ['Q (Скала)', 'W (Огненный шар)', 'E (Пассивка)', 'R (Ульт)'];
-      const effects = ['пробивает броню', 'оглушает на 2.5с', 'снижает реген', 'крадёт ману', 'блокирует лечение', 'увеличивает урон', 'замедляет на 60%', 'снимает баффы'];
-      const skill = skills[Math.floor(Math.random() * skills.length)];
-      const effect = effects[Math.floor(Math.random() * effects.length)];
-      return `${heroName} использует ${skill}, ${effect}, что сильно мешает ${targetName}.`;
+    // Описания на русском и английском
+    function buildCounterDesc(heroName, targetName, lang) {
+      const skillsRu = ['Q (Скала)', 'W (Огненный шар)', 'E (Пассивка)', 'R (Ульт)'];
+      const skillsEn = ['Q (Rock)', 'W (Fireball)', 'E (Passive)', 'R (Ultimate)'];
+      const effectsRu = ['пробивает броню', 'оглушает на 2.5с', 'снижает реген', 'крадёт ману', 'блокирует лечение', 'увеличивает урон', 'замедляет на 60%', 'снимает баффы'];
+      const effectsEn = ['pierces armor', 'stuns for 2.5s', 'reduces regen', 'steals mana', 'blocks healing', 'increases damage', 'slows by 60%', 'dispels buffs'];
+      const skill = lang === 'ru' ? skillsRu[Math.floor(Math.random() * skillsRu.length)] : skillsEn[Math.floor(Math.random() * skillsEn.length)];
+      const effect = lang === 'ru' ? effectsRu[Math.floor(Math.random() * effectsRu.length)] : effectsEn[Math.floor(Math.random() * effectsEn.length)];
+      if (lang === 'ru') {
+        return `${heroName} использует ${skill}, ${effect}, что сильно мешает ${targetName}.`;
+      } else {
+        return `${heroName} uses ${skill}, ${effect}, which greatly hinders ${targetName}.`;
+      }
     }
 
-    // Создаём финальный массив heroes с контрами
+    // Создаём массив героев с контрами
     const heroes = finalHeroes.map((h, idx) => {
       const counters = [];
       const counteredBy = [];
@@ -500,18 +436,19 @@
       // 4 контрит
       for (let i=0; i<4; i++) {
         let cname = getRandomHeroName(exclude);
-        // избегаем повторов в этом списке
         while (counters.some(c => c.name === cname)) cname = getRandomHeroName(exclude);
-        const desc = buildCounterDesc(h.name, cname);
-        counters.push({ name: cname, desc });
+        const descRu = buildCounterDesc(h.name, cname, 'ru');
+        const descEn = buildCounterDesc(h.name, cname, 'en');
+        counters.push({ name: cname, descRu, descEn });
       }
       // 4 контрится
       for (let i=0; i<4; i++) {
         let cname = getRandomHeroName(exclude);
         while (counters.some(c => c.name === cname) || counteredBy.some(c => c.name === cname)) 
           cname = getRandomHeroName(exclude);
-        const desc = buildCounterDesc(cname, h.name);
-        counteredBy.push({ name: cname, desc });
+        const descRu = buildCounterDesc(cname, h.name, 'ru');
+        const descEn = buildCounterDesc(cname, h.name, 'en');
+        counteredBy.push({ name: cname, descRu, descEn });
       }
       return {
         ...h,
@@ -520,10 +457,9 @@
       };
     });
 
-    // ------------------ РЕНДЕР САЙТА ------------------
+    // ------------------ РЕНДЕР ------------------
     const container = document.getElementById('heroContainer');
     const langToggle = document.getElementById('langToggle');
-    let currentLang = 'ru';
 
     function renderHeroes() {
       container.innerHTML = '';
@@ -533,7 +469,6 @@
         section.style.background = `linear-gradient(145deg, ${hero.color}22, #0d0d1a)`;
         section.id = `hero-${hero.name.replace(/\s/g,'')}`;
 
-        // заголовок
         const titleDiv = document.createElement('div');
         titleDiv.className = 'hero-title';
         titleDiv.innerHTML = `
@@ -544,11 +479,10 @@
         `;
         section.appendChild(titleDiv);
 
-        // сетка
         const grid = document.createElement('div');
         grid.className = 'counter-grid';
 
-        // блок "Контрит"
+        // Блок "Контрит"
         const counterBlock = document.createElement('div');
         counterBlock.className = 'counter-block';
         counterBlock.style.borderLeftColor = '#ff7f50';
@@ -558,9 +492,9 @@
           item.className = 'counter-item';
           const nameSpan = document.createElement('span');
           nameSpan.className = 'counter-hero-name';
-          nameSpan.style.color = heroes.find(h => h.name === c.name)?.color || '#ccc';
+          const heroColor = heroes.find(h => h.name === c.name)?.color || '#ccc';
+          nameSpan.style.color = heroColor;
           nameSpan.textContent = c.name;
-          // якорь по клику
           nameSpan.onclick = () => {
             const targetId = `hero-${c.name.replace(/\s/g,'')}`;
             const el = document.getElementById(targetId);
@@ -568,14 +502,22 @@
           };
           const descSpan = document.createElement('div');
           descSpan.className = 'counter-desc';
-          descSpan.textContent = c.desc;
+          // ДВЕ версии описания
+          const ruSpan = document.createElement('span');
+          ruSpan.className = 'ru-text';
+          ruSpan.textContent = c.descRu;
+          const enSpan = document.createElement('span');
+          enSpan.className = 'en-text';
+          enSpan.textContent = c.descEn;
+          descSpan.appendChild(ruSpan);
+          descSpan.appendChild(enSpan);
           item.appendChild(nameSpan);
           item.appendChild(descSpan);
           counterBlock.appendChild(item);
         });
         grid.appendChild(counterBlock);
 
-        // блок "Контрится"
+        // Блок "Контрится"
         const counteredBlock = document.createElement('div');
         counteredBlock.className = 'counter-block';
         counteredBlock.style.borderLeftColor = '#ff6347';
@@ -585,7 +527,8 @@
           item.className = 'counter-item';
           const nameSpan = document.createElement('span');
           nameSpan.className = 'counter-hero-name';
-          nameSpan.style.color = heroes.find(h => h.name === c.name)?.color || '#ccc';
+          const heroColor = heroes.find(h => h.name === c.name)?.color || '#ccc';
+          nameSpan.style.color = heroColor;
           nameSpan.textContent = c.name;
           nameSpan.onclick = () => {
             const targetId = `hero-${c.name.replace(/\s/g,'')}`;
@@ -594,7 +537,14 @@
           };
           const descSpan = document.createElement('div');
           descSpan.className = 'counter-desc';
-          descSpan.textContent = c.desc;
+          const ruSpan = document.createElement('span');
+          ruSpan.className = 'ru-text';
+          ruSpan.textContent = c.descRu;
+          const enSpan = document.createElement('span');
+          enSpan.className = 'en-text';
+          enSpan.textContent = c.descEn;
+          descSpan.appendChild(ruSpan);
+          descSpan.appendChild(enSpan);
           item.appendChild(nameSpan);
           item.appendChild(descSpan);
           counteredBlock.appendChild(item);
@@ -626,7 +576,6 @@
     langToggle.addEventListener('click', function() {
       document.body.classList.toggle('lang-ru');
       document.body.classList.toggle('lang-en');
-      // меняем текст кнопки условно
       if (document.body.classList.contains('lang-en')) {
         langToggle.textContent = '🇬🇧 EN / 🇷🇺 RU';
       } else {
@@ -639,9 +588,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Добавим обработку клика на имена в контрах (уже сделано)
-
-    console.log('✅ Dota 2 7.41 — 127 героев загружено!');
+    console.log('✅ Dota 2 7.41 — 127 героев, двуязычные описания загружены!');
   </script>
 </body>
 </html>
